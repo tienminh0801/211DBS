@@ -10,7 +10,7 @@ export default function ManageProduct() {
     const [data, setData] = useState([])
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/san_pham`)
+        axios.get(`http://localhost:5000/san_pham`)
             .then(res => setData(res.data))
             .catch(err => console.log('Đây là lỗi :', err))
     }, [])
@@ -20,7 +20,7 @@ export default function ManageProduct() {
         const history = useHistory()
 
         function handleRemoveProduct() {
-            axios.post(`http://localhost:8080/san_pham/remove/${product.ten_san_pham}`)
+            axios.post(`http://localhost:5000/san_pham/remove/${product.ten_san_pham}`)
                 .then(res => {
                     setData(res.data)
                 })

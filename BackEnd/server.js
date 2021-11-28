@@ -19,6 +19,6 @@ app.get('/',(req,res) => {
     res.send("Hello DBS")
 })  
 
-const PORT = 8080
+const PORT = 5000
 
 app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`))
