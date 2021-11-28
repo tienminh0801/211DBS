@@ -5,9 +5,9 @@ import NavBar from "../HomePage/NavBar";
 
 const axios = require("axios");
 
-export default function AddProduct() {
+export default function AddBaoHanh() {
     const [dataProduct, setDataProduct] = useState([]);
-    const [dataFactory, setDataFactory] = useState([]);
+    const [dataSeri, setDataSeri] = useState([]);
 
     useEffect(() => {
         axios
@@ -16,8 +16,8 @@ export default function AddProduct() {
             .catch((err) => console.log("Đây là lỗi :", err));
 
         axios
-            .get(`http://localhost:8080/hang_san_xuat`)
-            .then((res) => setDataFactory(res.data))
+            .get(`http://localhost:8080/eachproduct`)
+            .then((res) => setDataSeri(res.data))
             .catch((err) => console.log("Đây là lỗi :", err));
     }, []);
 
@@ -55,12 +55,12 @@ export default function AddProduct() {
             return;
         }
 
-        axios.post("http://localhost:8080/san_pham", {
+        axios.post("http://localhost:8080/bao_hanh", {
             ten_san_pham: name,
             ten_san_pham_tang_kem: bonus == "Không" ? null : bonus,
             loai_san_pham: type,
             khuyen_mai: discount == "Không" ? null : discount,
-            ma_so_hang: dataFactory.find((item) => item.ten_hang == manufactory).ma_so_hang,
+            ma_so_hang: dataSeri.find((item) => item.ten_hang == manufactory).ma_so_hang,
             gia_niem_yet: price,
             thoi_gian_bao_hanh: guaranteeTime,
             chat_lieu: material,
@@ -76,18 +76,12 @@ export default function AddProduct() {
                 <NavBar />
             </div>
             <div class="container my-5">
-                <h2 class="d-flex justify-content-center text-danger my-5">Thêm sản phẩm</h2>
+                <h2 class="d-flex justify-content-center text-danger my-5">Thêm Đơn Bảo Hành</h2>
 
                 <form class="row g-3 d-flex justify-content-center" method="POST">
-                    <div class="col-md-5">
-                        <label for="nameProduct" class="form-label">
-                            Tên sản phẩm
-                        </label>
-                        <input type="text" class="form-control" id="nameProduct" />
-                    </div>
-                    <div class="col-md-5">
+                    <div class="col-10">
                         <label for="bonusProduct" class="form-label">
-                            Sản phẩm tặng kèm
+                            Tên dòng sản phẩm
                         </label>
                         <select id="bonusProduct" class="form-select">
                             <option selected>Không</option>
@@ -96,68 +90,19 @@ export default function AddProduct() {
                             ))}
                         </select>
                     </div>
-                    <div class="col-10">
-                        <label for="typeProduct" class="form-label">
-                            Loại sản phẩm
-                        </label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="typeProduct"
-                            placeholder="Điện thoại, Laptop, Tablet, ..."
-                        />
-                    </div>
-                    <div class="col-10">
-                        <label for="material" class="form-label">
-                            Chất liệu
-                        </label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="material"
-                            placeholder="Kim loại, Kính, Nhựa, ..."
-                        />
-                    </div>
-                    <div class="col-md-10">
-                        <label for="price" class="form-label">
-                            Giá bán
-                        </label>
-                        <input type="text" class="form-control" id="price" />
-                    </div>
-                    <div class="col-md-10">
-                        <label for="discount" class="form-label">
-                            Khuyến mãi{" "}
-                        </label>
-                        <input type="text" class="form-control" id="discount" placeholder="Không" />
-                    </div>
+
                     <div class="col-md-10">
                         <label for="manufactory" class="form-label">
-                            Hãng sản xuất
+                            Chọn số Seri của sản phẩm
                         </label>
                         <select id="manufactory" class="form-select">
                             <option selected>Lựa chọn</option>
-                            {dataFactory.map((item) => (
-                                <option>{item.ten_hang}</option>
+                            {dataSeri.map((item) => (
+                                <option>{`${item.ten_dong_san_pham} - ${item.seri_san_pham}`}</option>
                             ))}
                         </select>
                     </div>
-                    <div class="col-md-10">
-                        <label for="guaranteeTime" class="form-label">
-                            Thời gian bảo hành{" "}
-                        </label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="guaranteeTime"
-                            placeholder="2 năm"
-                        />
-                    </div>
-                    <div class="col-md-10">
-                        <label for="debutTime" class="form-label">
-                            Thời gian ra mắt{" "}
-                        </label>
-                        <input type="date" class="form-control" id="debutTime" />
-                    </div>
+
                     <div class="col-10 d-flex justify-content-end">
                         <button
                             type="submit"
