@@ -64,7 +64,7 @@ export default function AddProduct() {
             chat_lieu: material,
             thoi_gian_ra_mat: debutTime
         })
-        window.location.href = '/'
+        window.location.href = '/product'
 
     }
 

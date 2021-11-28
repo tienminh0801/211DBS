@@ -59,7 +59,7 @@ export default function AddProduct() {
             thoi_gian_ra_mat: debutTime
         })
 
-        window.location.href = '/'
+        window.location.href = '/product'
     }
 
     return (
