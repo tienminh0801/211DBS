@@ -8,6 +8,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import ManageOrder from './components/ManageOrder';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
             <Route path="/" exact component={ManageProduct} />
             <Route path="/add" exact component={AddProduct} />
             <Route path="/edit" exact component={EditProduct} />
+            <Route path="/order" exact component={ManageOrder} />
           </Switch>
         </Router>
       </div>
