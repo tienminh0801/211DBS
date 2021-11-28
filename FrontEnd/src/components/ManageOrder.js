@@ -81,7 +81,7 @@ function ManageOrder() {
                     <thead class='table-bordered'>
                         <tr class='table-danger'>
                             <th scope="col">Mã đơn hàng</th>
-                            <th scope="col">CCCD nhân viên giao hàng</th>
+                            <th scope="col">CCCD NV giao hàng</th>
                             <th scope="col">Thời gian giao</th>
                             <th scope="col">Phí giao</th>
                             <th scope="col">Tình trạng</th>
