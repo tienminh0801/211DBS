@@ -23,26 +23,12 @@ export default function AddBaoHanh() {
 
     function handleAddProduct(e) {
         let name = document.getElementById("nameProduct").value;
-        let bonus = document.getElementById("bonusProduct").value;
-        let type = document.getElementById("typeProduct").value;
-        let material = document.getElementById("material").value;
-        let price = document.getElementById("price").value;
-        let discount = document.getElementById("discount").value;
-        let manufactory = document.getElementById("manufactory").value;
-        let guaranteeTime = document.getElementById("guaranteeTime").value;
-        let debutTime = document.getElementById("debutTime").value;
+        let seri = document.getElementById("seriProduct").value;
+        let time = document.getElementById("tg_baohanh").value;
 
         e.preventDefault();
 
-        if (
-            name == "" ||
-            type == "" ||
-            material == "" ||
-            price == "" ||
-            name == "" ||
-            guaranteeTime == "" ||
-            manufactory == "Lựa chọn"
-        ) {
+        if (name == "Lựa chọn" || seri == "Lựa chọn") {
             toast.error("Thông tin chưa được điền đầy đủ", {
                 position: "top-right",
                 autoClose: 3000,
@@ -56,18 +42,12 @@ export default function AddBaoHanh() {
         }
 
         axios.post("http://localhost:8080/bao_hanh", {
-            ten_san_pham: name,
-            ten_san_pham_tang_kem: bonus == "Không" ? null : bonus,
-            loai_san_pham: type,
-            khuyen_mai: discount == "Không" ? null : discount,
-            ma_so_hang: dataSeri.find((item) => item.ten_hang == manufactory).ma_so_hang,
-            gia_niem_yet: price,
-            thoi_gian_bao_hanh: guaranteeTime,
-            chat_lieu: material,
-            thoi_gian_ra_mat: debutTime,
+            ten_dong_sp: name,
+            seri_sp: seri,
+            thoi_gian_bao_hanh: time,
         });
 
-        window.location.href = "/product";
+        window.location.href = "/baohanh";
     }
 
     return (
@@ -80,11 +60,11 @@ export default function AddBaoHanh() {
 
                 <form class="row g-3 d-flex justify-content-center" method="POST">
                     <div class="col-10">
-                        <label for="bonusProduct" class="form-label">
+                        <label for="nameProduct" class="form-label">
                             Tên dòng sản phẩm
                         </label>
-                        <select id="bonusProduct" class="form-select">
-                            <option selected>Không</option>
+                        <select id="nameProduct" class="form-select">
+                            <option selected>Lựa chọn</option>
                             {dataProduct.map((item) => (
                                 <option>{item.ten_san_pham}</option>
                             ))}
@@ -92,15 +72,29 @@ export default function AddBaoHanh() {
                     </div>
 
                     <div class="col-md-10">
-                        <label for="manufactory" class="form-label">
+                        <label for="seriProduct" class="form-label">
                             Chọn số Seri của sản phẩm
                         </label>
-                        <select id="manufactory" class="form-select">
+                        <select id="seriProduct" class="form-select">
                             <option selected>Lựa chọn</option>
                             {dataSeri.map((item) => (
-                                <option>{`${item.ten_dong_san_pham} - ${item.seri_san_pham}`}</option>
+                                <option
+                                    value={item.seri_san_pham}
+                                >{`${item.ten_dong_san_pham} - ${item.seri_san_pham}`}</option>
                             ))}
                         </select>
+                    </div>
+
+                    <div class="col-10">
+                        <label for="tg_baohanh" class="form-label">
+                            Thời gian bảo hành (ngày)
+                        </label>
+                        <input
+                            type="number"
+                            class="form-control"
+                            id="tg_baohanh"
+                            defaultValue="0"
+                        />
                     </div>
 
                     <div class="col-10 d-flex justify-content-end">
