@@ -15,7 +15,7 @@ exports.insertProduct = (req, res) => {
 exports.getByName = (req, res) => {
     const data = req.params.id
     const result = data => res.send(data)
-    console.log(data)
+    // console.log(data)
     DongSanPham.getByName(data, result)
 
 }
@@ -31,6 +31,13 @@ exports.removeProduct = (req, res) => {
     const data = req.params.id
     const result = data => res.send(data)
     DongSanPham.removeProduct(data,result)
+
+}
+
+exports.searchProduct = (req, res) => {
+    const data = req.params.id
+    const result = data => res.send(data)
+    DongSanPham.searchProduct(data,result)
 
 }
 

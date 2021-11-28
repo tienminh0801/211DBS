@@ -42,13 +42,16 @@ DongSanPham.insertProduct = function (data) {
 } 
 
 DongSanPham.getByName = function (data, send) {
-    let query = "SELECT * FROM dong_san_pham WHERE dong_san_pham.ten_san_pham = ?";
+    let query = "SELECT dong_san_pham.* , hang_san_xuat.ten_hang\
+    FROM dong_san_pham, hang_san_xuat\
+    WHERE dong_san_pham.ten_san_pham = ? AND hang_san_xuat.ma_so_hang = dong_san_pham.ma_so_hang";
 
     mySql.query(query, data, (err, res) => {
         if (err) {
             console.log("error: ", err);
             return;
         }
+        console.log(res, ' Here!!!!!')
         send(res)
     });
 } 
@@ -87,5 +90,17 @@ DongSanPham.removeProduct = function (data,send) {
     });
 } 
 
+DongSanPham.searchProduct = function (data, send) {
+    let query = "SELECT * FROM dong_san_pham WHERE dong_san_pham.ten_san_pham REGEXP ? ";
+
+    mySql.query(query, data, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            return;
+        }
+        console.log(res, ' Here!!!!!')
+        send(res)
+    });
+} 
 
 module.exports = DongSanPham

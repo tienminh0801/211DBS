@@ -1,8 +1,8 @@
 // import './App.css';
-import ManageProduct from './components/ManageProduct';
-import NavBar from './components/NavBar';
-import AddProduct from './components/AddProduct';
-import EditProduct from './components/EditProduct';
+import ManageProduct from './components/Product/ManageProduct';
+import AddProduct from './components/Product/AddProduct';
+import EditProduct from './components/Product/EditProduct';
+import HomePage from './components/HomePage/HomePage'
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,22 +12,19 @@ import {
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        {/* <NavBar /> */}
-      </header>
-      <div class='container my-5'>
-        {/* <ManageProduct /> */}
-        {/* <AddProduct /> */}
+    <div>
+      {/* <ManageProduct /> */}
+      {/* <AddProduct /> */}
+
         <Router>
           <Switch>
-            <Route path="/" exact component={ManageProduct} />
-            <Route path="/add" exact component={AddProduct} />
-            <Route path="/edit" exact component={EditProduct} />
+            <Route path="/" exact component={HomePage} />
+            <Route path="/product" exact component={ManageProduct} />
+            <Route path="/product/add" exact component={AddProduct} />
+            <Route path="/product/edit" exact component={EditProduct} />
           </Switch>
         </Router>
-      </div>
-    </div>
+    </div >
   );
 }
 
