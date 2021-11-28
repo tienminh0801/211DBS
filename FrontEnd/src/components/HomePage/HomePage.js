@@ -3,7 +3,7 @@
 export default function HomePage() {
     return (
         <div class='bg-dark' style={{ height: '780px' }}>
-            <main class="cover-container d-flex align-content-center  text-center" style={{ paddingTop: '200px', marginLeft: '150px', border: 'dark' }}>
+            <main class="cover-container d-flex align-content-center  text-center" style={{ paddingTop: '150px', marginLeft: '150px', border: 'dark' }}>
                 <div class='row'>
                     <div class='m-5 col-6'>
                         <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="white" class="bi bi-laptop"
@@ -14,7 +14,7 @@ export default function HomePage() {
                             style={{ cursor: "pointer" }} onClick={() => window.location.href = '/product'}>
                             Quản lí sản phẩm</h2>
                     </div>
-                    <div class='mx-5 col-6'>
+                    <div class='m-5 col-6'>
                         <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="white" class="bi bi-cart" viewBox="0 0 16 16">
                             <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
                         </svg>
@@ -30,7 +30,7 @@ export default function HomePage() {
                         </svg>
                         <h2 class='text-white mt-4'>Quản lí nhân viên</h2>
                     </div>
-                    <div class='mx-5 col-6'>
+                    <div class='m-5 col-6'>
                         <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="white" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
                             <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
                         </svg>
