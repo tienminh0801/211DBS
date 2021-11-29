@@ -5,7 +5,7 @@ export default function NavBar() {
         //     })
         e.preventDefault();
         // window.location.href = `/product/?search=${document.getElementById("search").value}`;
-        window.location.href = `/order/?search=${document.getElementById("search").value}`;
+        window.location.href = `/employee/?search=${document.getElementById("search").value}`;
     }
 
     return (

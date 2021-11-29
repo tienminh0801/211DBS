@@ -8,13 +8,13 @@ const axios = require('axios')
 
 
 export default function AddProduct() {
-
+    const listMgr = [];
     const [dataEmployee, setDataEmployee] = useState([])
     const [dataBranch, setDataBranch] = useState([])
     const [infoEmployee, setInfoEmployee] = useState([])
     const location = useLocation().state
     useEffect(() => {
-        axios.get(`http://localhost:5000/nhan_vien/list_mgr`)
+        axios.get(`http://localhost:5000/nhan_vien`)
             .then(res => setDataEmployee(res.data))
             .catch(err => console.log('Đây là lỗi :', err))
 
@@ -25,6 +25,12 @@ export default function AddProduct() {
             .then(res => setInfoEmployee(res.data[0]))
             .catch(err => console.log('Đây là lỗi :', err))
     }, [])
+
+    for(let i = 0; i <dataEmployee.length; i++)
+        {
+            if(!dataEmployee[i].cccd_nguoi_giam_sat) listMgr.push(dataEmployee[i])
+        }
+    console.log(listMgr)
     function fixDate(date) {
         return date && date.slice(0, 10);
     }
@@ -159,7 +165,7 @@ export default function AddProduct() {
                         <label for="noSupervisorEmployee" class="form-label">Cccd người giám sát</label>
                         <select id="noSupervisorEmployee" class="form-select">
                             <option selected>{infoEmployee.cccd_nguoi_giam_sat}</option>
-                            {dataEmployee.map(item => (
+                            {listMgr.map(item => (
                                 <option>{item.cccd + ' - ' + item.ten + ' - ' + item.ten_chi_nhanh}</option>
                             ))}
                         </select>

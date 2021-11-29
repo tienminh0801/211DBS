@@ -7,12 +7,12 @@ const axios = require('axios')
 
 
 export default function AddEmployee() {
-
+    const listMgr = [];
     const [dataEmployee, setDataEmployee] = useState([])
     const [dataBranch, setDataBranch] = useState([])
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/nhan_vien/list_mgr`)
+        axios.get(`http://localhost:5000/nhan_vien`)
             .then(res => setDataEmployee(res.data))
             .catch(err => console.log('Đây là lỗi :', err))
 
@@ -20,6 +20,13 @@ export default function AddEmployee() {
             .then(res => setDataBranch(res.data))
             .catch(err => console.log('Đây là lỗi :', err))
     }, [])
+    
+    
+    for(let i = 0; i <dataEmployee.length; i++)
+        {
+            if(!dataEmployee[i].cccd_nguoi_giam_sat) listMgr.push(dataEmployee[i])
+        }
+    console.log(listMgr)
 
     function handleAddEmployee(e) {
         let numCard = document.getElementById('numCardEmployee').value
@@ -153,7 +160,7 @@ export default function AddEmployee() {
                         <label for="noSupervisorEmployee" class="form-label">Cccd người giám sát</label>
                         <select id="noSupervisorEmployee" class="form-select">
                             <option selected>Lựa chọn</option>
-                            {dataEmployee.map(item => (
+                            {listMgr.map(item => (
                                 <option>{item.cccd + ' - ' + item.ten + ' - ' + item.ten_chi_nhanh}</option>
                             ))}
                         </select>
