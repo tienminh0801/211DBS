@@ -4,7 +4,7 @@ export default function NavBar() {
         //     .then(res => {
         //     })
         e.preventDefault();
-        window.location.href = `/product/?search=${document.getElementById("search").value}`;
+        window.location.href = `/employee/?search=${document.getElementById("search").value}`;
     }
 
     return (
@@ -28,7 +28,7 @@ export default function NavBar() {
                             </a>
                         </li>
                         <li class="nav-item me-5">
-                            <a class="nav-link" href="/" tabindex="-1" aria-disabled="true">
+                            <a class="nav-link" href="/employee" tabindex="-1" aria-disabled="true">
                                 Nhân viên
                             </a>
                         </li>

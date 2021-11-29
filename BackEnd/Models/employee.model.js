@@ -104,8 +104,8 @@ NhanVien.getByCccd = function (data, send) {
     });
 } 
 
-NhanVien.searchProduct = function (data, send) {
-    let query = "SELECT * FROM nhan_vien WHERE nhan_vien.cccd REGEXP ? ";
+NhanVien.searchEmployee = function (data, send) {
+    let query = "SELECT * FROM nhan_vien WHERE nhan_vien.ten REGEXP ? ";
 
     mySql.query(query, data, (err, res) => {
         if (err) {

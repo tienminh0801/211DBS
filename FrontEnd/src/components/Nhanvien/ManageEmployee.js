@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import NavBar from '../HomePage/NavBarEmployee';
+import NavBar from '../HomePage/NavBar';
 const axios = require('axios')
 
 
@@ -26,11 +26,14 @@ export default function ManageEmployee() {
 
         const history = useHistory()
 
-        function handleRemoveEmployee() {
-            axios.post(`http://localhost:5000/nhan_vien/remove/${employee.cccd}`)
-                .then(res => {
-                    setData(res.data)
-                })
+        function handleRemoveEmployee(param) {
+            const isSure = window.confirm("Bạn có chắc chắn muốn xóa nhân viên này ??");
+
+            if (isSure) {
+                axios.post(`http://localhost:5000/nhan_vien/remove/${param}`).then((res) => {
+                    setData(res.data);
+                });
+            } else return;
         }
 
         function fixDate(date){
@@ -51,10 +54,13 @@ export default function ManageEmployee() {
                 <td>{employee.cccd_nguoi_giam_sat ? employee.cccd_nguoi_giam_sat : "Không"}</td>
                 <td>{employee.loai_nhan_vien}</td>
                 <td>
-                    <button type="button" class="btn btn-sm btn-outline-danger"
-                        data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    <button type="button"
+                        class="btn btn-sm btn-outline-danger"
+                        data-bs-toggle="modal"
+                        data-bs-target="#exampleModal"
+                        onClick={() => handleRemoveEmployee(employee.cccd)}
                     >Xóa</button>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    {/* <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -73,7 +79,7 @@ export default function ManageEmployee() {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </td>
                 <td>
                     <button type="button" class="btn btn-sm btn-outline-secondary"
@@ -89,15 +95,16 @@ export default function ManageEmployee() {
     return (
 
         <div >
-            <div class='mb-1'>
+            <div class="mb-5">
                 <NavBar />
             </div>
+            <div class="container my-5">
             <div class='row my-2'>
                 <h2 class='col' style={{color: "red"}}>QUẢN LÝ NHÂN VIÊN</h2>
     
             </div>
             <div class="table-responsive">
-            <button type="button" class="btn btn-sm btn-outline-warning col-2 my-1 float-start" onClick={() => window.location.href = '/'}>
+            <button type="button" class="btn btn-sm btn-warning col-2 my-1 float-start" onClick={() => window.location.href = '/employee'}>
                     <a> Danh sách nhân viên </a>
             </button>
             <button type="button" class="btn btn-sm btn-outline-danger mx-5 col-3 my-1 float-start" onClick={() => window.location.href = '/employee_family'}>
@@ -134,6 +141,7 @@ export default function ManageEmployee() {
                         })}
                     </tbody>
                 </table>
+            </div>
             </div>
         </div>
     )

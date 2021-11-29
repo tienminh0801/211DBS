@@ -2,18 +2,18 @@ import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import NavBar from '../HomePage/NavBar';
 const axios = require('axios')
 
 
 export default function AddProduct() {
-
+    const list = [];
     const [dataEmployee, setDataEmployee] = useState([])
     const [dataBranch, setDataBranch] = useState([])
     const [infoEmployee, setInfoEmployee] = useState([])
     const location = useLocation().state
     useEffect(() => {
-        axios.get(`http://localhost:5000/nhan_vien/list_mgr`)
+        axios.get(`http://localhost:5000/nhan_vien`)
             .then(res => setDataEmployee(res.data))
             .catch(err => console.log('Đây là lỗi :', err))
 
@@ -24,6 +24,12 @@ export default function AddProduct() {
             .then(res => setInfoEmployee(res.data[0]))
             .catch(err => console.log('Đây là lỗi :', err))
     }, [])
+
+    for(let i = 0; i < dataEmployee.length; i++)
+    {
+        if(!dataEmployee[i].cccd_nguoi_giam_sat) list.push(dataEmployee[i])
+    }
+    console.log(list)
     function fixDate(date){
         return date && date.slice(0, 10);
     }
@@ -78,12 +84,15 @@ export default function AddProduct() {
             loai_nhan_vien: type
         })
 
-        window.location.href = '/'
+        window.location.href = '/employee'
     }
 
     return (
         <div >
-
+            <div class="mb-5">
+                <NavBar />
+            </div>
+            <div class="container my-5">
             <h2 class='d-flex justify-content-center text-primary my-5'>Chỉnh sửa sản phẩm</h2>
 
             <form class="row g-3 d-flex justify-content-center">
@@ -154,7 +163,7 @@ export default function AddProduct() {
                     <label for="noSupervisorEmployee" class="form-label">Cccd người giám sát</label>
                     <select id="noSupervisorEmployee" class="form-select">
                         <option selected>{infoEmployee.cccd_nguoi_giam_sat}</option>
-                        {dataEmployee.map(item => (
+                        {list.map(item => (
                             <option>{item.cccd+ ' - ' + item.ten + ' - ' + item.ten_chi_nhanh}</option>
                         ))}
                     </select>
@@ -174,6 +183,7 @@ export default function AddProduct() {
                     <ToastContainer />
                 </div>
             </form>
+        </div>
         </div>
     )
 }
