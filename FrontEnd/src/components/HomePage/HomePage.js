@@ -1,11 +1,22 @@
 export default function HomePage() {
     return (
-        <div class='bg-dark vh-100' >
-            <main class="cover-container d-flex align-content-center  text-center" style={{ paddingTop: 'auto', marginLeft: '180px', border: 'dark'}}>
-                <div class='row'>
-                    <div class='m-5 col-6'>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="white" class="bi bi-laptop"
-                            viewBox="0 0 16 16" style={{ cursor: "pointer" }} onClick={() => window.location.href = '/product'}>
+        <div class="bg-dark vh-100">
+            <main
+                class="cover-container d-flex align-content-center  text-center"
+                style={{ paddingTop: "auto", marginLeft: "180px", border: "dark" }}
+            >
+                <div class="row">
+                    <div class="m-5 col-6">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="64"
+                            height="64"
+                            fill="white"
+                            class="bi bi-laptop"
+                            viewBox="0 0 16 16"
+                            style={{ cursor: "pointer" }}
+                            onClick={() => (window.location.href = "/product")}
+                        >
                             <path d="M13.5 3a.5.5 0 0 1 .5.5V11H2V3.5a.5.5 0 0 1 .5-.5h11zm-11-1A1.5 1.5 0 0 0 1 3.5V12h14V3.5A1.5 1.5 0 0 0 13.5 2h-11zM0 12.5h16a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5z" />
                         </svg>
                         <h2
@@ -39,6 +50,8 @@ export default function HomePage() {
                             fill="white"
                             class="bi bi-people-fill"
                             viewBox="0 0 16 16"
+                            style={{ cursor: "pointer" }}
+                            onClick={() => (window.location.href = "/employee")}
                         >
                             <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                             <path
@@ -47,7 +60,13 @@ export default function HomePage() {
                             />
                             <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
                         </svg>
-                        <h2 class="text-white mt-4">Quản lí nhân viên</h2>
+                        <h2
+                            class="text-white mt-4"
+                            style={{ cursor: "pointer" }}
+                            onClick={() => (window.location.href = "/employee")}
+                        >
+                            Quản lí nhân viên
+                        </h2>
                     </div>
                     <div class="m-5 col-6">
                         <svg
