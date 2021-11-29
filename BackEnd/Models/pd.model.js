@@ -45,4 +45,30 @@ Pd.getAllInStock = function (send) {
     })
 }
 
+Pd.updateProductOrder = function (data, body) {
+    let query = "UPDATE san_pham SET ? WHERE san_pham.seri_san_pham = ?";
+
+    mySql.query(query, [body, data], (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            return;
+        }
+
+        console.log("Update Success");
+    });
+}
+
+Pd.deleteProductOrder = function (data, body) {
+    let query = "UPDATE san_pham SET ? WHERE san_pham.seri_san_pham = ?";
+    console.log(data)
+    mySql.query(query, [body, data], (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            return;
+        }
+
+        console.log("Update Success");
+    });
+}
+
 module.exports = Pd

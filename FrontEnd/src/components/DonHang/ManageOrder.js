@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import NavBar from '../HomePage/NavBar'
 
 const axios = require('axios')
 
@@ -23,9 +24,6 @@ function ManageOrder() {
                     setData(res.data)
                 })
         }
-
-
-
         return (
             <tr>
                 <td>{order.ma_don_hang}</td>
@@ -53,7 +51,9 @@ function ManageOrder() {
 
     return (
         <div >
-
+            <div class='mb-5'>
+                <NavBar />
+            </div>
             <div class='row my-5'>
                 <h2 class='col'>Quản lí đơn hàng</h2>
                 <button type="button" class="btn btn-sm btn-outline-success mx-5 col-2 float-start" onClick={() => window.location.href = '/add_order'}>

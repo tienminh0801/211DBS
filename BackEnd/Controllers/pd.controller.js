@@ -14,3 +14,15 @@ exports.getAllInStock = (req, res) => {
     const result = data => res.send(data)
     Pd.getAllInStock(result)
 }
+
+exports.updateProductOrder = (req, res) => {
+    const data = req.params.id
+    const body = req.body
+    Pd.updateProductOrder(data, body)
+}
+
+exports.deleleProductOrder = (req, res) => {
+    const data = req.params.id
+    const body = req.body
+    Pd.deleteProductOrder(data, body)
+}

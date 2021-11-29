@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import { useHistory } from 'react-router-dom'
 import 'react-toastify/dist/ReactToastify.css';
+import NavBar from '../HomePage/NavBar';
 const axios = require('axios')
 
 function EditOrder({history}) {
@@ -73,8 +74,16 @@ function EditOrder({history}) {
 
         const history = useHistory()
 
-        function handleRemoveProduct() {
-            
+        function handleRemoveProduct(e) {
+            e.preventDefault()
+            if (window.confirm("Bạn có chắc chắn muốn xóa sản phẩm khỏi đơn hàng này ?")) {
+                axios.post(`http://localhost:5000/product/delete/${product.seri_san_pham}`, {
+                    ma_don_hang: null
+                })
+            }
+            axios.get(`http://localhost:5000/product/${location}`)
+            .then(res => setDataOrder(res.data))
+            .catch(err => console.log('Đây là lỗi :', err))
         }
 
 
@@ -91,27 +100,8 @@ function EditOrder({history}) {
                     <button type="button" class="btn btn-sm btn-outline-danger"
                         data-bs-toggle="modal" data-bs-target="#exampleModal"
                         disabled={infoOrder.tinh_trang == "Đã giao" ? true : false}
+                        onClick={(e) => handleRemoveProduct(e)}
                     >Xóa</button>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Cảnh báo</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    Bạn có chắc chắn muốn xóa sản phẩm này ?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Không</button>
-                                    <button type="button" class="btn btn-primary"
-                                        onClick={() => handleRemoveProduct()}
-                                        data-bs-dismiss="modal"
-                                    >Chắc chắn</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </td>
             </tr>
         )
@@ -119,6 +109,9 @@ function EditOrder({history}) {
 
     return (
         <div>
+            <div class='mb-5'>
+                <NavBar />
+            </div>
             <h2 class='d-flex justify-content-center text-primary my-5'>Chỉnh sửa đơn hàng</h2>
             <form class="row g-3 d-flex justify-content-center " method='POST'>
                 <div class="col-md-5">

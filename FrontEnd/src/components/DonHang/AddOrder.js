@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import NavBar from '../HomePage/NavBar';
 
 const axios = require('axios')
 
@@ -67,7 +68,9 @@ export default function AddOrder() {
 
     return (
         <div >
-
+            <div class='mb-5'>
+                <NavBar />
+            </div>
             <h2 class='d-flex justify-content-center text-danger my-5'>Thêm đơn hàng</h2>
 
             <form class="row g-3 d-flex justify-content-center" method='POST'>

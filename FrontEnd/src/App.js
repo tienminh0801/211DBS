@@ -15,13 +15,7 @@ import AddProductOrder from './components/DonHang/AddProductOrder';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        {/* <NavBar /> */}
-      </header>
-      <div class='container my-5'>
-        {/* <ManageProduct /> */}
-        {/* <AddProduct /> */}
+      <div class='container'>
         <Router>
           <Switch>
             <Route path="/" exact component={HomePage} />
@@ -38,7 +32,6 @@ function App() {
           </Switch>
         </Router>
       </div>
-    </div>
   );
 }
 export default App

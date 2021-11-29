@@ -1,13 +1,18 @@
 import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import NavBar from '../HomePage/NavBar';
 
 const axios = require('axios')
 
-function AddProductOrder() {
+function AddProductOrder({history}) {
     const [seriList, setSeriList] = useState([])
     const [product, setProduct] = useState({})
-    const [seri, setSeri] = useState('')
+    const [seri, setSeri] = useState('Không')
+
+    const location = useLocation().state
+
     useEffect(() => {
         axios.get(`http://localhost:5000/product`)
             .then(res => setSeriList(res.data))
@@ -18,6 +23,26 @@ function AddProductOrder() {
             .then(res => setProduct(res.data[0]))
             .catch(err => console.log('Đây là lỗi :', err))
     }, [seri])
+
+    function handleBuy(e) {
+        e.preventDefault()
+        if (seri == 'Không') {
+            toast.error('Vui lòng chọn sản phẩm', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            return
+        }
+        axios.post(`http://localhost:5000/product/${seri}`, {
+            ma_don_hang: location
+        })
+        history.push('/edit_order', location)
+    }
 
 
     function ProductItem({ product }) {
@@ -35,6 +60,9 @@ function AddProductOrder() {
 
     return (
         <div >
+            <div class='mb-5'>
+                <NavBar />
+            </div>
             <h2 class='d-flex justify-content-center text-danger my-5'>Thêm sản phẩm</h2>
 
             <form class="row g-3 d-flex justify-content-center" method='POST'>
@@ -70,7 +98,8 @@ function AddProductOrder() {
                 </table>
                 </div>
                 <div class="col-10 d-flex justify-content-end">
-                    <button type="submit" class="btn btn-success w-25" onClick={(e) => console.log(e)}>Thêm sản phẩm</button>
+                    <button type="submit" class="btn btn-success w-25" 
+                    onClick={(e) => handleBuy(e)}>Thêm sản phẩm</button>
                     <ToastContainer />
                 </div>
             </form>
