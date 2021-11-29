@@ -15,4 +15,4 @@ Type the command
 ```
 npm start
 ```
-in both BackEnd and FrontEnd directory.
+in both BackEnd and FrontEnd directory to run application on http://localhost:3000/ for FrontEnd and on http://localhost:5000/ for BackEnd
