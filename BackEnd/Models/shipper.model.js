@@ -1,7 +1,7 @@
 const mySql = require('../Config/ConnectMySql')
 
 const Shipper = function (shipper) {
-    this.Shipper = shipper.cccd
+    this.cccd = shipper.cccd
 }
 
 Shipper.getAll = function(send) {
