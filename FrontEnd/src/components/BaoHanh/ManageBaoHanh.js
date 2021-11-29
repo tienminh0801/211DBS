@@ -12,12 +12,12 @@ export default function ManageBaoHanh() {
     useEffect(() => {
         if (searchKey) {
             axios
-                .get(`http://localhost:8080/bao_hanh/search/${searchKey}`)
+                .get(`http://localhost:5000/bao_hanh/search/${searchKey}`)
                 .then((res) => setData(res.data))
                 .catch((err) => console.log("Đây là lỗi :", err));
         } else {
             axios
-                .get(`http://localhost:8080/bao_hanh`)
+                .get(`http://localhost:5000/bao_hanh`)
                 .then((res) => setData(res.data))
                 .catch((err) => console.log("Đây là lỗi :", err));
         }
@@ -27,7 +27,7 @@ export default function ManageBaoHanh() {
         const history = useHistory();
 
         function handleRemoveBaoHanh() {
-            axios.post(`http://localhost:8080/bao_hanh/remove/${baohanh.seri_sp}`).then((res) => {
+            axios.post(`http://localhost:5000/bao_hanh/remove/${baohanh.seri_sp}`).then((res) => {
                 setData(res.data);
             });
         }

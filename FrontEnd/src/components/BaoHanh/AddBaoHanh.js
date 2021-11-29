@@ -11,12 +11,12 @@ export default function AddBaoHanh() {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:8080/san_pham`)
+            .get(`http://localhost:5000/san_pham`)
             .then((res) => setDataProduct(res.data))
             .catch((err) => console.log("Đây là lỗi :", err));
 
         axios
-            .get(`http://localhost:8080/eachproduct`)
+            .get(`http://localhost:5000/eachproduct`)
             .then((res) => setDataSeri(res.data))
             .catch((err) => console.log("Đây là lỗi :", err));
     }, []);
@@ -41,7 +41,7 @@ export default function AddBaoHanh() {
             return;
         }
 
-        axios.post("http://localhost:8080/bao_hanh", {
+        axios.post("http://localhost:5000/bao_hanh", {
             ten_dong_sp: name,
             seri_sp: seri,
             thoi_gian_bao_hanh: time,

@@ -18,7 +18,7 @@ export default function AddProduct() {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/san_pham/${location}`)
+        axios.get(`http://localhost:5000/san_pham/${location}`)
             .then(res => {
                 setInfoProduct(res.data[0])
                 // console.log(infoProduct.khuyen_mai)
@@ -26,12 +26,12 @@ export default function AddProduct() {
             .catch(err => console.log('Đây là lỗi :', err))
 
 
-        axios.get(`http://localhost:8080/san_pham/`)
+        axios.get(`http://localhost:5000/san_pham/`)
             .then(res => setDataProduct(res.data))
             .catch(err => console.log('Đây là lỗi :', err))
 
 
-        axios.get(`http://localhost:8080/hang_san_xuat`)
+        axios.get(`http://localhost:5000/hang_san_xuat`)
             .then(res => {
                 setDataFactory(res.data)
                 console.log('dataFactory : ', dataFactory)
@@ -53,7 +53,7 @@ export default function AddProduct() {
 
         e.preventDefault();
 
-        axios.post(`http://localhost:8080/san_pham/${location}`, {
+        axios.post(`http://localhost:5000/san_pham/${location}`, {
             ten_san_pham: name,
             ten_san_pham_tang_kem: bonus == 'Không' ? null : bonus,
             loai_san_pham: type,
