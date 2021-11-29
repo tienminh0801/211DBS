@@ -77,6 +77,7 @@ DongSanPham.removeProduct = function (data,send) {
             console.log("error: ", err);
             return;
         }
+        console.log(data)
         console.log("Remove Success");
     });
 
