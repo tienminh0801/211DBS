@@ -19,7 +19,9 @@ const manufactoryRouter = require("./Routers/manufactory.router");
 const employeeRouter = require("./Routers/employee.router");
 const branchRouter = require("./Routers/branch.router");
 const familyRouter = require("./Routers/family.router");
-
+const saleRouter = require('./Routers/sale.router')
+const customerRouter = require('./Routers/customer.router')
+const duocxulyRouter = require('./Routers/duocxuly.router')
 // const connection = require('./Config/ConnectMySql')
 
 app.use(express.urlencoded({ extended: true }));
@@ -34,11 +36,14 @@ app.use("/shipper", shipperRouter);
 // app.use("/san_pham", productRouter);
 app.use("/bao_hanh", baohanhRouter);
 app.use("/eachproduct", eachproductRouter);
-app.use("/san_pham", productRouter);
-app.use("/hang_san_xuat", manufactoryRouter);
-app.use("/nhan_vien", employeeRouter);
-app.use("/chi_nhanh", branchRouter);
-app.use("/nguoi_than", familyRouter);
+app.use('/san_pham',productRouter)
+app.use('/hang_san_xuat',manufactoryRouter)
+app.use('/nhan_vien', employeeRouter)
+app.use('/chi_nhanh', branchRouter)
+app.use('/nguoi_than', familyRouter)
+app.use('/sale', saleRouter)
+app.use('/customer', customerRouter)
+app.use('/duocxuly', duocxulyRouter)
 
 app.get("/", (req, res) => {});
 

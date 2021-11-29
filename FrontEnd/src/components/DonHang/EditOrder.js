@@ -10,7 +10,9 @@ function EditOrder({ history }) {
     const [dataOrder, setDataOrder] = useState([])
     const [infoOrder, setInfoOrder] = useState([])
     const [emp, setEmp] = useState([])
-
+    const [sale, setSale] = useState([])
+    const [cus, setCus] = useState([])
+    const [duocxuly, setDuocxuly] = useState(null)
     const location = useLocation().state
 
     useEffect(() => {
@@ -23,18 +25,29 @@ function EditOrder({ history }) {
         axios.get(`http://localhost:5000/shipper`)
             .then(res => setEmp(res.data))
             .catch(err => console.log('Đây là lỗi :', err))
+        axios.get(`http://localhost:5000/sale`)
+            .then(res => setSale(res.data))
+            .catch(err => console.log('Đây là lỗi :', err))
+        axios.get(`http://localhost:5000/customer`)
+            .then(res => setCus(res.data))
+            .catch(err => console.log('Đây là lỗi :', err))
+        axios.get(`http://localhost:5000/duocxuly/${location}`)
+            .then(res => setDuocxuly(res.data[0]))
+            .catch(err => console.log('Đây là lỗi :', err))
     }, [])
-
+    console.log(duocxuly)
     function handleEditOrder(e) {
         let name = document.getElementById('nameOrder').value
         let cccd_nv = document.getElementById('cccd-nv-giao-hang').value
         let time_ship = document.getElementById('time-ship').value
         let fee = document.getElementById('fee').value
         let tinh_trang = document.getElementById('tinh_trang').value
+        let cccd_sale = document.getElementById('cccd-nv-ban-hang').value
+        let sdt = document.getElementById('khach-hang').value
 
         e.preventDefault();
 
-        if (name == '') {
+        if (name == '' || (sdt == 'Không' && cccd_sale != 'Không') || (sdt != 'Không' && cccd_sale == 'Không')) {
             toast.error('Thông tin chưa được điền đầy đủ', {
                 position: "top-right",
                 autoClose: 3000,
@@ -58,7 +71,18 @@ function EditOrder({ history }) {
             });
             return
         }
-
+        if (tinh_trang == 'Đã giao' && !duocxuly) {
+            toast.error('Đơn hàng chưa được xử lý', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            return
+        }
         axios.post(`http://localhost:5000/order/${location}`, {
             ma_don_hang: name,
             cccd_nv_giao_hang: cccd_nv,
@@ -66,6 +90,17 @@ function EditOrder({ history }) {
             phi_giao: fee ? fee : 0,
             tinh_trang: tinh_trang
         })
+        if (sdt != 'Không' && cccd_sale != 'Không') {
+            if (!duocxuly)
+            axios.post(`http://localhost:5000/duocxuly/${location}`, {
+                sdt_khach_hang: sdt,
+                cccd_nv_ban_hang: cccd_sale
+            })
+            else axios.post(`http://localhost:5000/duocxuly/update/${location}`, {
+                sdt_khach_hang: sdt,
+                cccd_nv_ban_hang: cccd_sale
+            })
+        }
         window.location.href = '/order'
 
     }
@@ -122,7 +157,7 @@ function EditOrder({ history }) {
                     <select id="cccd-nv-giao-hang" class="form-select" >
                         {
                             emp && emp.map(item => (
-                                <option selected={item.cccd == infoOrder.cccd_nv_giao_hang ? true : false}>{item.cccd}</option>
+                                <option key={item.cccd} selected={item.cccd == infoOrder.cccd_nv_giao_hang ? true : false}>{item.cccd}</option>
                             ))
                         }
                     </select>
@@ -149,6 +184,33 @@ function EditOrder({ history }) {
                                 <option selected>Chưa giao</option>
                             </select>
                     }
+                </div>
+                
+                <div class="col-md-5">
+                    <label for="cccd-nv-ban-hang" class="form-label">CCCD nhân viên bán hàng</label>
+                    <select id="cccd-nv-ban-hang" class="form-select" >
+                        <option>Không</option>
+                        {
+                            sale && sale.map(item => (
+                                <option key={item.cccd} 
+                                selected={duocxuly ? item.cccd == duocxuly.cccd_nv_ban_hang ? true : false : false}
+                                >{item.cccd}</option>
+                            ))
+                        }
+                    </select>
+                </div>
+                <div class="col-md-5">
+                    <label for="khach-hang" class="form-label">Khách hàng</label>
+                    <select id="khach-hang" class="form-select" >
+                        <option>Không</option>
+                        {
+                            cus && cus.map(item => (
+                                <option key={item.sdt} 
+                                selected={duocxuly ? item.sdt == duocxuly.sdt_khach_hang ? true : false : false}
+                                >{item.sdt}</option>
+                            ))
+                        }
+                    </select>
                 </div>
                 {
                     infoOrder.tinh_trang !== "Đã giao" &&

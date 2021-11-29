@@ -61,7 +61,7 @@ export default function AddOrder() {
             thoi_gian_giao: time_order ? time_order : null,
             phi_giao: fee ? fee : 0,
             tinh_trang: tinh_trang
-        })
+        }).catch(err => console.log(err))
 
         window.location.href = '/order'
     }

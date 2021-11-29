@@ -50,7 +50,7 @@ Order.removeOrder = function (data,send) {
 
     mySql.query(query, data, (err, res) => {
         if (err) {
-            console.log("error: ", err);
+            console.log("error: ", err.sqlMessage);
             return;
         }
         console.log("Remove Success");
