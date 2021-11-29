@@ -29,14 +29,14 @@ export default function EditBaoHanh() {
             .catch((err) => console.log("Đây là lỗi :", err));
     }, []);
 
-    function handleEditProduct(e) {
+    function handleEditBaoHanh(e) {
         let name = document.getElementById("nameProduct").value;
         let seri = document.getElementById("seriProduct").value;
         let time = document.getElementById("tg_baohanh").value;
 
         e.preventDefault();
 
-        axios.post(`http://localhost:8080/san_pham/${location}`, {
+        axios.post(`http://localhost:8080/bao_hanh/${location}`, {
             ten_dong_sp: name,
             seri_sp: seri,
             thoi_gian_bao_hanh: time,
@@ -95,7 +95,7 @@ export default function EditBaoHanh() {
                         <button
                             type="submit"
                             class="btn btn-success w-25"
-                            onClick={(e) => handleEditProduct(e)}
+                            onClick={handleEditBaoHanh}
                         >
                             Chỉnh sửa sản phẩm
                         </button>
