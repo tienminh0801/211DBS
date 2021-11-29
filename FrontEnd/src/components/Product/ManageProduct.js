@@ -13,9 +13,17 @@ export default function ManageProduct() {
     const searchKey = (new URLSearchParams(window.location.search)).get('search')
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/san_pham`)
-            .then(res => setData(res.data))
-            .catch(err => console.log('Đây là lỗi :', err))
+        if (searchKey) {
+            axios.get(`http://localhost:5000/san_pham/search/${searchKey}`)
+                .then(res => setData(res.data))
+                .catch(err => console.log('Đây là lỗi :', err))
+        }
+        else 
+        {
+            axios.get(`http://localhost:5000/san_pham`)
+                .then(res => setData(res.data))
+                .catch(err => console.log('Đây là lỗi :', err))
+        }
     }, [])
 
     function ProductItem({ product }) {
@@ -28,9 +36,9 @@ export default function ManageProduct() {
 
             if (isSure) {
                 axios.post(`http://localhost:8080/san_pham/remove/${param}`)
-                .then(res => {
-                    setData(res.data)
-                })
+                    .then(res => {
+                        setData(res.data)
+                    })
             }
             else return
         }
@@ -50,7 +58,7 @@ export default function ManageProduct() {
                         }}
                     >Xử lý</button> */}
                     <button type="button" class="btn btn-sm btn-outline-danger"
-                        data-bs-toggle="modal" data-bs-target="#exampleModal" 
+                        data-bs-toggle="modal" data-bs-target="#exampleModal"
                         onClick={() => handleRemoveProduct(product.ten_san_pham)}
                     >Xử lý</button>
                     {/* <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
