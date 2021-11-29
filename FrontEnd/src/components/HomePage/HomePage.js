@@ -1,7 +1,7 @@
 export default function HomePage() {
     return (
         <div class='bg-dark vh-100' >
-            <main class="cover-container d-flex align-content-center  text-center" style={{ paddingTop: 'auto', marginLeft: '180px', border: 'dark' }}>
+            <main class="cover-container d-flex align-content-center  text-center" style={{ paddingTop: '150px', marginLeft: '180px', border: 'dark' }}>
                 <div class='row'>
                     <div class='m-5 col-6'>
                         <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="white" class="bi bi-laptop"
