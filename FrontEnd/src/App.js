@@ -1,13 +1,12 @@
 // import './App.css';
-import ManageProduct from './components/ManageProduct';
-import NavBar from './components/NavBar';
-import AddProduct from './components/AddProduct';
-import EditProduct from './components/EditProduct';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from "react-router-dom";
+import ManageProduct from "./components/Product/ManageProduct";
+import AddProduct from "./components/Product/AddProduct";
+import EditProduct from "./components/Product/EditProduct";
+import HomePage from "./components/HomePage/HomePage";
+import ManageBaoHanh from "./components/BaoHanh/ManageBaoHanh";
+import AddBaoHanh from "./components/BaoHanh/AddBaoHanh";
+import EditBaoHanh from "./components/BaoHanh/EditBaoHanh";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ManageOrder from './components/ManageOrder';
 import AddOrder from './components/AddOrder';
 import EditOrder from './components/EditOrder';
@@ -25,18 +24,21 @@ function App() {
         {/* <AddProduct /> */}
         <Router>
           <Switch>
-            <Route path="/" exact component={ManageProduct} />
-            <Route path="/add" exact component={AddProduct} />
-            <Route path="/edit" exact component={EditProduct} />
+            <Route path="/" exact component={HomePage} />
+            <Route path="/product" exact component={ManageProduct} />
+            <Route path="/product/add" exact component={AddProduct} />
+            <Route path="/product/edit" exact component={EditProduct} />
             <Route path="/order" exact component={ManageOrder} />
             <Route path="/add_order" exact component={AddOrder} />
             <Route path="/edit_order" exact component={EditOrder} />
             <Route path="/add_to_order" exact component={AddProductOrder} />
+            <Route path="/baohanh" exact component={ManageBaoHanh} />
+            <Route path="/baohanh/add" exact component={AddBaoHanh} />
+            <Route path="/baohanh/edit" exact component={EditBaoHanh} />
           </Switch>
         </Router>
       </div>
     </div>
   );
 }
-
-export default App;
+export default App

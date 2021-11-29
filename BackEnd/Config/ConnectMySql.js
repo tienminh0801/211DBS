@@ -1,4 +1,4 @@
-const mysql = require('mysql')
+const mysql = require("mysql");
 
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -8,8 +8,8 @@ const connection = mysql.createConnection({
 })
 
 connection.connect((err) => {
-    if (err) console.log("Cannot connect MySql because ", err)
-    else console.log("Connected to MySql !!!!")
-})
+    if (err) console.log("Cannot connect MySql because ", err);
+    else console.log("Connected to MySql !!!!");
+});
 
-module.exports = connection
+module.exports = connection;
