@@ -79,6 +79,7 @@ function AddProductOrder({history}) {
                     </select>
                 </div>
                 <div class="table-responsive">
+                <div class='container my-5' >
                 <table class="table table-striped table-sm table-hover">
                     <thead class='table-bordered'>
                         <tr class='table-danger'>
@@ -101,6 +102,7 @@ function AddProductOrder({history}) {
                     <button type="submit" class="btn btn-success w-25" 
                     onClick={(e) => handleBuy(e)}>Thêm sản phẩm</button>
                     <ToastContainer />
+                </div>
                 </div>
             </form>
         </div>
