@@ -16,7 +16,11 @@ function ManageOrder() {
 
         const history = useHistory()
 
-        function handleRemoveProduct() {
+        function handleRemoveOrder(ma) {
+            axios.post(`http://localhost:5000/order/remove/${ma}`)
+                .then(res => {
+                    setData(res.data)
+                })
         }
 
 
@@ -24,13 +28,14 @@ function ManageOrder() {
         return (
             <tr>
                 <td>{order.ma_don_hang}</td>
-                <td>{order.cccd_nv_giao_hang ? order.cccd_nv_giao_hang : 'Chưa giao'}</td>
+                <td>{order.cccd_nv_giao_hang ? order.cccd_nv_giao_hang : 'Chưa phân'}</td>
                 <td>{order.thoi_gian_giao ? order.thoi_gian_giao : 'Chưa giao'}</td>
                 <td>{order.phi_giao}</td>
                 <td>{order.tinh_trang}</td>
                 <td>
                     <button type="button" class="btn btn-sm btn-outline-danger"
                         data-bs-toggle="modal" data-bs-target="#exampleModal"
+                        disabled={order.tinh_trang == 'Đã giao' ? true : false}
                     >Xóa</button>
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -45,7 +50,7 @@ function ManageOrder() {
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Không</button>
                                     <button type="button" class="btn btn-primary"
-                                        onClick={() => handleRemoveProduct()}
+                                        onClick={() => handleRemoveOrder(order.ma_don_hang)}
                                         data-bs-dismiss="modal"
                                     >Chắc chắn</button>
                                 </div>
@@ -55,8 +60,9 @@ function ManageOrder() {
                 </td>
                 <td>
                     <button type="button" class="btn btn-sm btn-outline-secondary"
+                        disabled={order.tinh_trang == 'Đã giao' ? true : false}
                         onClick={() => {
-                            // history.push('/edit', product.ten_san_pham)
+                            history.push('/edit_order', order.ma_don_hang)
                         }}
                     >Xử lý</button>
                 </td>

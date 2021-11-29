@@ -9,6 +9,8 @@ import {
   Route
 } from "react-router-dom";
 import ManageOrder from './components/ManageOrder';
+import AddOrder from './components/AddOrder';
+import EditOrder from './components/EditOrder';
 
 
 function App() {
@@ -26,6 +28,8 @@ function App() {
             <Route path="/add" exact component={AddProduct} />
             <Route path="/edit" exact component={EditProduct} />
             <Route path="/order" exact component={ManageOrder} />
+            <Route path="/add_order" exact component={AddOrder} />
+            <Route path="/edit_order" exact component={EditOrder} />
           </Switch>
         </Router>
       </div>
