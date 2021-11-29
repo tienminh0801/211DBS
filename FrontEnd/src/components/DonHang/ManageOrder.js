@@ -9,9 +9,16 @@ function ManageOrder() {
     const searchKey = (new URLSearchParams(window.location.search)).get('search')
 
     useEffect(() => {
+        if (searchKey) {
+            axios.get(`http://localhost:5000/order/search/${searchKey}`)
+                .then(res => setData(res.data))
+                .catch(err => console.log('Đây là lỗi :', err))
+        }
+        else {
         axios.get(`http://localhost:5000/order`)
             .then(res => setData(res.data))
             .catch(err => console.log('Đây là lỗi :', err))
+        }
     }, [])
 
 
@@ -54,7 +61,7 @@ function ManageOrder() {
     return (
         <div >
             <div class='mb-5'>
-                <NavBar />
+                <NavBar pathName='order' />
             </div>
             <div class='container my-5' >
 

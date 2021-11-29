@@ -1,11 +1,11 @@
-export default function NavBar() {
+export default function NavBar({ pathName }) {
     function handleSearch(e) {
         // axios.get(`http://localhost:5000/san_pham/search/${document.getElementById('search').value}`)
         //     .then(res => {
         //     })
         e.preventDefault();
-        window.location.href = `/product/?search=${document.getElementById("search").value}`;
-        // window.location.href = `/order/?search=${document.getElementById("search").value}`;
+        // window.location.href = `/product/?search=${document.getElementById("search").value}`;
+        window.location.href = `/${pathName}/?search=${document.getElementById("search").value}`;
     }
 
     return (

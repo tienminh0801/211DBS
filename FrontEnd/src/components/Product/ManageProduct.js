@@ -98,7 +98,7 @@ export default function ManageProduct() {
 
         <div>
             <div class='mb-5'>
-                <NavBar />
+                <NavBar pathName='product' />
             </div>
             <div class='container my-5' >
 

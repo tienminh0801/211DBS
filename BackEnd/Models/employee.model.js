@@ -46,14 +46,18 @@ NhanVien.updateEmployee = function (data, body) {
     });
 } 
 
+
 NhanVien.getMgr = function (data, send) {
-    let query = "SELECT * FROM nhan_vien WHERE nhan_vien.cccd_nguoi_giam_sat IS NULL ";
+    let query = "SELECT * FROM nhan_vien WHERE nhan_vien.cccd_nguoi_giam_sat IS NULL";
 
     mySql.query(query, data, (err, res) => {
         if (err) {
             console.log("error: ", err);
+            result(err);
             return;
         }
+
+        // console.log("Hãng sản xuất: ", res);
         send(res)
     });
 }
@@ -104,9 +108,8 @@ NhanVien.getByCccd = function (data, send) {
     });
 } 
 
-NhanVien.searchProduct = function (data, send) {
-    let query = "SELECT * FROM nhan_vien WHERE nhan_vien.cccd REGEXP ? ";
-
+NhanVien.searchEmployee = function (data, send) {
+    let query = "SELECT * FROM nhan_vien WHERE nhan_vien.ten REGEXP ?";
     mySql.query(query, data, (err, res) => {
         if (err) {
             console.log("error: ", err);

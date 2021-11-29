@@ -61,7 +61,7 @@ function AddProductOrder({history}) {
     return (
         <div >
             <div class='mb-5'>
-                <NavBar />
+                <NavBar pathName='order' />
             </div>
             <h2 class='d-flex justify-content-center text-danger my-5'>Thêm sản phẩm</h2>
 
@@ -79,6 +79,7 @@ function AddProductOrder({history}) {
                     </select>
                 </div>
                 <div class="table-responsive">
+                <div class='container my-5' >
                 <table class="table table-striped table-sm table-hover">
                     <thead class='table-bordered'>
                         <tr class='table-danger'>
@@ -101,6 +102,7 @@ function AddProductOrder({history}) {
                     <button type="submit" class="btn btn-success w-25" 
                     onClick={(e) => handleBuy(e)}>Thêm sản phẩm</button>
                     <ToastContainer />
+                </div>
                 </div>
             </form>
         </div>

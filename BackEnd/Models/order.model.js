@@ -50,7 +50,7 @@ Order.removeOrder = function (data,send) {
 
     mySql.query(query, data, (err, res) => {
         if (err) {
-            console.log("error: ", err);
+            console.log("error: ", err.sqlMessage);
             return;
         }
         console.log("Remove Success");
@@ -80,16 +80,8 @@ Order.updateOrder = function (data, body) {
 }
 
 Order.searchOrder = function (data, send) {
-    console.log(data)
-    console.log('a')
-    let query = "SELECT * " +
-    "FROM don_hang " + 
-    "WHERE don_hang.ma_don_hang REGEXP ? " +
-    "OR don_hang.cccd_nv_giao_hang REGEXP ? " +
-    "OR don_hang.thoi_gian_giao REGEXP ? " +
-    "OR don_hang.phi_giao REGEXP ? " +
-    "OR don_hang.tinh_trang REGEXP ?";
-    mySql.query(query, [data, data, data, data, data], (err, res) => {
+    let query = "SELECT * FROM don_hang WHERE don_hang.ma_don_hang REGEXP ? OR don_hang.cccd_nv_giao_hang REGEXP ? OR don_hang.tinh_trang REGEXP ?";
+    mySql.query(query, [data, data, data], (err, res) => {
         if (err) {
             console.log("error: ", err);
             return;

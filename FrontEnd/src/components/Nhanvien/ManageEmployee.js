@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import NavBar from '../HomePage/NavBarEmployee';
+import NavBar from '../HomePage/NavBar';
 const axios = require('axios')
 
 
@@ -90,7 +90,7 @@ export default function ManageEmployee() {
 
         <div >
             <div class='mb-1'>
-                <NavBar />
+                <NavBar pathName='employee' />
             </div>
             <div class='container my-5' >
                 <div class='row my-2'>
@@ -98,7 +98,7 @@ export default function ManageEmployee() {
 
                 </div>
                 <div class="table-responsive">
-                    <button type="button" class="btn btn-sm btn-outline-warning col-2 my-1 float-start" onClick={() => window.location.href = '/'}>
+                    <button type="button" class="btn btn-sm btn-warning col-2 my-1 float-start" onClick={() => window.location.href = '/employee'}>
                         <a> Danh sách nhân viên </a>
                     </button>
                     <button type="button" class="btn btn-sm btn-outline-danger mx-5 col-3 my-1 float-start" onClick={() => window.location.href = '/employee_family'}>

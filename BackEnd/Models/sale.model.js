@@ -1,11 +1,11 @@
 const mySql = require('../Config/ConnectMySql')
 
-const Shipper = function (shipper) {
-    this.cccd = shipper.cccd
+const Sale = function (sale) {
+    this.cccd = sale.cccd
 }
 
-Shipper.getAll = function(send) {
-    let query = "SELECT nv_giao_hang.cccd FROM nv_giao_hang";
+Sale.getAll = function(send) {
+    let query = "SELECT nv_ban_hang.cccd FROM nv_ban_hang";
     mySql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -16,5 +16,4 @@ Shipper.getAll = function(send) {
     })
 }
 
-
-module.exports = Shipper
+module.exports = Sale

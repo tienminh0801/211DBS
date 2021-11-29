@@ -61,7 +61,7 @@ export default function AddOrder() {
             thoi_gian_giao: time_order ? time_order : null,
             phi_giao: fee ? fee : 0,
             tinh_trang: tinh_trang
-        })
+        }).catch(err => console.log(err))
 
         window.location.href = '/order'
     }
@@ -69,7 +69,7 @@ export default function AddOrder() {
     return (
         <div >
             <div class='mb-5'>
-                <NavBar />
+                <NavBar pathName='order' />
             </div>
             <h2 class='d-flex justify-content-center text-danger my-5'>Thêm đơn hàng</h2>
 

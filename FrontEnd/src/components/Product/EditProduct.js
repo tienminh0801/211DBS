@@ -71,7 +71,7 @@ export default function AddProduct() {
     return (
         <div >
             <div class='mb-5'>
-                <NavBar />
+                <NavBar pathName='product' />
             </div>
             <div class='container my-5' >
 
@@ -125,7 +125,7 @@ export default function AddProduct() {
                     </div>
                     <div class="col-md-10">
                         <label for="debutTime" class="form-label">Thời gian ra mắt </label>
-                        <input type="date" class="form-control" id="debutTime" defaultValue={infoProduct.thoi_gian_ra_mat} />
+                        <input type="date" class="form-control" id="debutTime" placeholder={(infoProduct.thoi_gian_ra_mat)} />
                     </div>
                     <div class="col-10 d-flex justify-content-end">
                         <button type="submit" class="btn btn-success w-25" onClick={(e) => handleEditProduct(e)}>Chỉnh sửa sản phẩm</button>

@@ -53,7 +53,7 @@ export default function AddBaoHanh() {
     return (
         <div>
             <div class="mb-5">
-                <NavBar />
+                <NavBar pathName='baohanh' />
             </div>
             <div class="container my-5">
                 <h2 class="d-flex justify-content-center text-danger my-5">Thêm Đơn Bảo Hành</h2>
