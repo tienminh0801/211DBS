@@ -29,14 +29,18 @@ export default function ManageProduct() {
 
         const history = useHistory()
 
-        function handleRemoveProduct() {
-            axios.post(`http://localhost:8080/san_pham/remove/${product.ten_san_pham}`)
+
+        function handleRemoveProduct(param) {
+            const isSure = window.confirm('Bạn có chắc chắn muốn xóa sản phẩm này ??')
+
+            if (isSure) {
+                axios.post(`http://localhost:8080/san_pham/remove/${param}`)
                 .then(res => {
                     setData(res.data)
                 })
+            }
+            else return
         }
-
-
 
         return (
             <tr>
@@ -47,10 +51,17 @@ export default function ManageProduct() {
                 <td>{product.gia_niem_yet}</td>
                 <td>{product.khuyen_mai ? product.khuyen_mai : 'Không'}</td>
                 <td>
+                    {/* <button type="button" class="btn btn-sm btn-outline-secondary"
+                        onClick={() => {
+                            handleRemoveProduct(product.ten_san_pham)
+                        }}
+                    >Xử lý</button> */}
                     <button type="button" class="btn btn-sm btn-outline-danger"
-                        data-bs-toggle="modal" data-bs-target="#exampleModal"
+                        data-bs-toggle="modal" data-bs-target="#exampleModal" 
+                        onClick={() => handleRemoveProduct(product.ten_san_pham)}
                     >Xử lý</button>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    {/* <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+                    data-name={product.ten_san_pham}>
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -63,13 +74,13 @@ export default function ManageProduct() {
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Không</button>
                                     <button type="button" class="btn btn-primary"
-                                        onClick={() => handleRemoveProduct()}
+                                        onClick={() => handleRemoveProduct(product.ten_san_pham)}
                                         data-bs-dismiss="modal"
                                     >Chắc chắn</button>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </td>
                 <td>
                     <button type="button" class="btn btn-sm btn-outline-secondary"

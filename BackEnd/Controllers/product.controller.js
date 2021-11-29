@@ -29,6 +29,7 @@ exports.updateProduct = (req, res) => {
 
 exports.removeProduct = (req, res) => {
     const data = req.params.id
+    console.log(data)
     const result = data => res.send(data)
     DongSanPham.removeProduct(data,result)
 
