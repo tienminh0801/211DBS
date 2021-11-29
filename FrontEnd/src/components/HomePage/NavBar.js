@@ -5,6 +5,7 @@ export default function NavBar() {
         //     })
         e.preventDefault();
         window.location.href = `/product/?search=${document.getElementById("search").value}`;
+        // window.location.href = `/order/?search=${document.getElementById("search").value}`;
     }
 
     return (
@@ -23,7 +24,7 @@ export default function NavBar() {
                             </a>
                         </li>
                         <li class="nav-item me-5">
-                            <a class="nav-link" href="/">
+                            <a class="nav-link" href="/order">
                                 Đơn hàng
                             </a>
                         </li>

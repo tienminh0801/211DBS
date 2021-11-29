@@ -13,16 +13,9 @@ export default function ManageProduct() {
     const searchKey = (new URLSearchParams(window.location.search)).get('search')
 
     useEffect(() => {
-        if (searchKey) {
-            axios.get(`http://localhost:8080/san_pham/search/${searchKey}`)
-                .then(res => setData(res.data))
-                .catch(err => console.log('Đây là lỗi :', err))
-        }
-        else {
-            axios.get(`http://localhost:8080/san_pham`)
-                .then(res => setData(res.data))
-                .catch(err => console.log('Đây là lỗi :', err))
-        }
+        axios.get(`http://localhost:5000/san_pham`)
+            .then(res => setData(res.data))
+            .catch(err => console.log('Đây là lỗi :', err))
     }, [])
 
     function ProductItem({ product }) {
