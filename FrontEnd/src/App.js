@@ -5,6 +5,7 @@ import EditProduct from "./components/Product/EditProduct";
 import HomePage from "./components/HomePage/HomePage";
 import ManageBaoHanh from "./components/BaoHanh/ManageBaoHanh";
 import AddBaoHanh from "./components/BaoHanh/AddBaoHanh";
+import EditBaoHanh from "./components/BaoHanh/EditBaoHanh";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
                     <Route path="/product/edit" exact component={EditProduct} />
                     <Route path="/baohanh" exact component={ManageBaoHanh} />
                     <Route path="/baohanh/add" exact component={AddBaoHanh} />
+                    <Route path="/baohanh/edit" exact component={EditBaoHanh} />
                 </Switch>
             </Router>
         </div>
