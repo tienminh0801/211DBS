@@ -23,9 +23,9 @@ function App() {
             <Route path="/product/add" exact component={AddProduct} />
             <Route path="/product/edit" exact component={EditProduct} />
             <Route path="/order" exact component={ManageOrder} />
-            <Route path="/add_order" exact component={AddOrder} />
-            <Route path="/edit_order" exact component={EditOrder} />
-            <Route path="/add_to_order" exact component={AddProductOrder} />
+            <Route path="/order/add" exact component={AddOrder} />
+            <Route path="/order/edit" exact component={EditOrder} />
+            <Route path="/order/add_product" exact component={AddProductOrder} />
             <Route path="/baohanh" exact component={ManageBaoHanh} />
             <Route path="/baohanh/add" exact component={AddBaoHanh} />
             <Route path="/baohanh/edit" exact component={EditBaoHanh} />

@@ -7,7 +7,7 @@ router.get('/:id', orderController.getByName)
 router.post('/', orderController.insertOrder)
 router.post('/remove/:id', orderController.removeOrder)
 router.post('/:id', orderController.updateOrder)
-
+router.get('/search/:id', orderController.searchOrder)
 
 
 module.exports = router;

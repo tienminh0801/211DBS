@@ -41,7 +41,7 @@ function AddProductOrder({history}) {
         axios.post(`http://localhost:5000/product/${seri}`, {
             ma_don_hang: location
         })
-        history.push('/edit_order', location)
+        history.push('/order/edit', location)
     }
 
 

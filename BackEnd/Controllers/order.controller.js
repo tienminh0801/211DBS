@@ -27,3 +27,9 @@ exports.updateOrder = (req, res) => {
     const body = req.body
     Order.updateOrder(data, body)
 }
+
+exports.searchOrder = (req, res) => {
+    const data = req.params.id
+    const result = data => res.send(data)
+    Order.searchOrder(data, result)
+}

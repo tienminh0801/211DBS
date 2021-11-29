@@ -72,8 +72,6 @@ function EditOrder({history}) {
 
     function ProductItem({ product }) {
 
-        const history = useHistory()
-
         function handleRemoveProduct(e) {
             e.preventDefault()
             if (window.confirm("Bạn có chắc chắn muốn xóa sản phẩm khỏi đơn hàng này ?")) {
@@ -97,11 +95,12 @@ function EditOrder({history}) {
                 <td>{product.gia_niem_yet}</td>
                 <td>{product.khuyen_mai ? product.khuyen_mai : 'Không'}</td>
                 <td>
-                    <button type="button" class="btn btn-sm btn-outline-danger"
+                    {   infoOrder.tinh_trang !== "Đã giao" &&
+                        <button type="button" class="btn btn-sm btn-outline-danger"
                         data-bs-toggle="modal" data-bs-target="#exampleModal"
-                        disabled={infoOrder.tinh_trang == "Đã giao" ? true : false}
                         onClick={(e) => handleRemoveProduct(e)}
                     >Xóa</button>
+                    }
                 </td>
             </tr>
         )
@@ -151,26 +150,30 @@ function EditOrder({history}) {
                     </select>
                     }
                 </div>
+                {
+                infoOrder.tinh_trang !== "Đã giao" &&
                 <div class="col-10 d-flex justify-content-end">
                     <button type="submit" class="btn btn-success w-25" 
-                    disabled={infoOrder.tinh_trang == "Đã giao" ? true : false}
                     onClick={(e) => handleEditOrder(e)}>Xác nhận</button>
                     <ToastContainer />
                 </div>
+                }
             </form>
 
             <div class='row my-5'>
                 <h2 class='col'>Danh sách sản phẩm</h2>
+                {infoOrder.tinh_trang !== "Đã giao" &&
                 <button type="button" class="btn btn-sm btn-outline-success mx-5 col-2 float-start" 
                     disabled={infoOrder.tinh_trang == "Đã giao" ? true : false}
                     onClick={() => {
-                        history.push('/add_to_order', infoOrder.ma_don_hang)
+                        history.push('/order/add_product', infoOrder.ma_don_hang)
                     }}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
                         <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z" />
                     </svg>
                     <a> Thêm sản phẩm </a>
                 </button>
+                }
             </div>
             <div class="table-responsive">
                 <table class="table table-striped table-sm table-hover">

@@ -41,7 +41,7 @@ function ManageOrder() {
                 <td>
                     <button type="button" class="btn btn-sm btn-outline-secondary"
                         onClick={() => {
-                            history.push('/edit_order', order.ma_don_hang)
+                            history.push('/order/edit', order.ma_don_hang)
                         }}
                     >Xử lý</button>
                 </td>
@@ -56,7 +56,7 @@ function ManageOrder() {
             </div>
             <div class='row my-5'>
                 <h2 class='col'>Quản lí đơn hàng</h2>
-                <button type="button" class="btn btn-sm btn-outline-success mx-5 col-2 float-start" onClick={() => window.location.href = '/add_order'}>
+                <button type="button" class="btn btn-sm btn-outline-success mx-5 col-2 float-start" onClick={() => window.location.href = '/order/add'}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
                         <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z" />
                     </svg>
