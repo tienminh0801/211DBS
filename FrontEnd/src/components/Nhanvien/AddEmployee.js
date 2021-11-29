@@ -80,7 +80,7 @@ export default function AddEmployee() {
             loai_nhan_vien: type
         })
 
-        window.location.href = '/'
+        window.location.href = '/employee'
     }
 
     return (

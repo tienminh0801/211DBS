@@ -85,7 +85,7 @@ export default function AddProduct() {
             loai_nhan_vien: type
         })
 
-        window.location.href = '/'
+        window.location.href = '/employee'
     }
 
     return (
