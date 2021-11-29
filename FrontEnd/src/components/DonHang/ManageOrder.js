@@ -17,7 +17,7 @@ function ManageOrder() {
         const history = useHistory()
 
         function handleRemoveOrder(ma) {
-            console.log(ma)
+            if (window.confirm("Bạn có chắc chắn muốn xóa đơn hàng này ?"))
             axios.post(`http://localhost:5000/order/remove/${ma.ma_don_hang}`)
                 .then(res => {
                     setData(res.data)
@@ -37,28 +37,8 @@ function ManageOrder() {
                     <button type="button" class="btn btn-sm btn-outline-danger"
                         data-bs-toggle="modal" data-bs-target="#exampleModal"
                         disabled={order.tinh_trang == 'Đã giao' ? true : false}
-                        onClick = {() => console.log(order)}
+                        onClick = {() => handleRemoveOrder(order)}
                     >Xóa</button>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Cảnh báo</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    Bạn có chắc chắn muốn xóa đơn hàng này ?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Không</button>
-                                    <button type="button" class="btn btn-primary"
-                                        onClick={() => console.log(order)}
-                                        data-bs-dismiss="modal"
-                                    >Chắc chắn</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </td>
                 <td>
                     <button type="button" class="btn btn-sm btn-outline-secondary"

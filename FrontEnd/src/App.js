@@ -7,10 +7,10 @@ import ManageBaoHanh from "./components/BaoHanh/ManageBaoHanh";
 import AddBaoHanh from "./components/BaoHanh/AddBaoHanh";
 import EditBaoHanh from "./components/BaoHanh/EditBaoHanh";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import ManageOrder from './components/ManageOrder';
-import AddOrder from './components/AddOrder';
-import EditOrder from './components/EditOrder';
-import AddProductOrder from './components/AddProductOrder';
+import ManageOrder from './components/DonHang/ManageOrder';
+import AddOrder from './components/DonHang/AddOrder';
+import EditOrder from './components/DonHang/EditOrder';
+import AddProductOrder from './components/DonHang/AddProductOrder';
 
 
 function App() {
