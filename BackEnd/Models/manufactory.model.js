@@ -1,10 +1,13 @@
-const mySql = require('../Config/ConnectMySql')
+const mySql = require("../Config/ConnectMySql");
 
 const HangSanXuat = function (hangSanXuat) {
-    this.ma_so_hang = hangSanXuat.ma_so_hang
-    this.ten_hang = hangSanXuat.ten_hang
-    this.xuat_xu = hangSanXuat.xuat_xu
-}
+    this.ma_so_hang = hangSanXuat.ma_so_hang;
+    this.ten_hang = hangSanXuat.ten_hang;
+    this.xuat_xu = hangSanXuat.xuat_xu;
+    this.so_sp_da_bh = hangSanXuat.so_sp_da_bh;
+    this.tong_tg_bh = hangSanXuat.tong_tg_bh;
+    this.thoi_gian_bh_tb = hangSanXuat.thoi_gian_bh_tb;
+};
 
 HangSanXuat.getAll = function (send) {
     let query = "SELECT * FROM hang_san_xuat";
@@ -17,8 +20,8 @@ HangSanXuat.getAll = function (send) {
         }
 
         // console.log("Hãng sản xuất: ", res);
-        send(res)
+        send(res);
     });
-} 
+};
 
-module.exports = HangSanXuat
+module.exports = HangSanXuat;
