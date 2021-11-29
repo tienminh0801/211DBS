@@ -11,6 +11,7 @@ import {
 import ManageOrder from './components/ManageOrder';
 import AddOrder from './components/AddOrder';
 import EditOrder from './components/EditOrder';
+import AddProductOrder from './components/AddProductOrder';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
             <Route path="/order" exact component={ManageOrder} />
             <Route path="/add_order" exact component={AddOrder} />
             <Route path="/edit_order" exact component={EditOrder} />
+            <Route path="/add_to_order" exact component={AddProductOrder} />
           </Switch>
         </Router>
       </div>

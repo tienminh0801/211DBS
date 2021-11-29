@@ -17,7 +17,8 @@ function ManageOrder() {
         const history = useHistory()
 
         function handleRemoveOrder(ma) {
-            axios.post(`http://localhost:5000/order/remove/${ma}`)
+            console.log(ma)
+            axios.post(`http://localhost:5000/order/remove/${ma.ma_don_hang}`)
                 .then(res => {
                     setData(res.data)
                 })
@@ -36,6 +37,7 @@ function ManageOrder() {
                     <button type="button" class="btn btn-sm btn-outline-danger"
                         data-bs-toggle="modal" data-bs-target="#exampleModal"
                         disabled={order.tinh_trang == 'Đã giao' ? true : false}
+                        onClick = {() => console.log(order)}
                     >Xóa</button>
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -50,7 +52,7 @@ function ManageOrder() {
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Không</button>
                                     <button type="button" class="btn btn-primary"
-                                        onClick={() => handleRemoveOrder(order.ma_don_hang)}
+                                        onClick={() => console.log(order)}
                                         data-bs-dismiss="modal"
                                     >Chắc chắn</button>
                                 </div>
@@ -60,7 +62,6 @@ function ManageOrder() {
                 </td>
                 <td>
                     <button type="button" class="btn btn-sm btn-outline-secondary"
-                        disabled={order.tinh_trang == 'Đã giao' ? true : false}
                         onClick={() => {
                             history.push('/edit_order', order.ma_don_hang)
                         }}

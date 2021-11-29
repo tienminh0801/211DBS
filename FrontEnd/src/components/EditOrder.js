@@ -84,12 +84,13 @@ function EditOrder({history}) {
                 <td>{product.ten_san_pham}</td>
                 <td>{product.ten_san_pham_tang_kem ? product.ten_san_pham_tang_kem : 'Không'}</td>
                 <td>{product.loai_san_pham}</td>
-                <td>{product.bao_hanh}</td>
+                <td>{product.thoi_gian_bao_hanh}</td>
                 <td>{product.gia_niem_yet}</td>
                 <td>{product.khuyen_mai ? product.khuyen_mai : 'Không'}</td>
                 <td>
                     <button type="button" class="btn btn-sm btn-outline-danger"
                         data-bs-toggle="modal" data-bs-target="#exampleModal"
+                        disabled={infoOrder.tinh_trang == "Đã giao" ? true : false}
                     >Xóa</button>
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -158,7 +159,9 @@ function EditOrder({history}) {
                     }
                 </div>
                 <div class="col-10 d-flex justify-content-end">
-                    <button type="submit" class="btn btn-success w-25" onClick={(e) => handleEditOrder(e)}>Xác nhận</button>
+                    <button type="submit" class="btn btn-success w-25" 
+                    disabled={infoOrder.tinh_trang == "Đã giao" ? true : false}
+                    onClick={(e) => handleEditOrder(e)}>Xác nhận</button>
                     <ToastContainer />
                 </div>
             </form>
@@ -166,6 +169,7 @@ function EditOrder({history}) {
             <div class='row my-5'>
                 <h2 class='col'>Danh sách sản phẩm</h2>
                 <button type="button" class="btn btn-sm btn-outline-success mx-5 col-2 float-start" 
+                    disabled={infoOrder.tinh_trang == "Đã giao" ? true : false}
                     onClick={() => {
                         history.push('/add_to_order', infoOrder.ma_don_hang)
                     }}>
