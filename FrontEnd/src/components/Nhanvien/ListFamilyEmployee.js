@@ -70,10 +70,10 @@ export default function ListFamilyEmployee() {
                     <h2 class='col' style={{ color: "red" }}>QUẢN LÝ NHÂN VIÊN</h2>
                 </div>
                 <div class="table-responsive">
-                    <button type="button" class="btn btn-sm btn-outline-warning col-2 my-1 float-start" onClick={() => window.location.href = '/'}>
+                    <button type="button" class="btn btn-sm btn-outline-warning col-2 my-1 float-start" onClick={() => window.location.href = '/employee'}>
                         <a> Danh sách nhân viên </a>
                     </button>
-                    <button type="button" class="btn btn-sm btn-outline-danger mx-5 col-3 my-1 float-start" onClick={() => window.location.href = '/employee_family'}>
+                    <button type="button" class="btn btn-sm btn-danger mx-5 col-3 my-1 float-start" onClick={() => window.location.href = '/employee_family'}>
                         <a> Danh sách người thân của nhân viên </a>
                     </button>
                     <button type="button" class="btn btn-sm btn-outline-success col-2 my-1 float-end" onClick={() => window.location.href = '/insert_employee'}>
