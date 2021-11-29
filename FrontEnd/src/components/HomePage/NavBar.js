@@ -29,7 +29,7 @@ export default function NavBar() {
                             </a>
                         </li>
                         <li class="nav-item me-5">
-                            <a class="nav-link" href="/" tabindex="-1" aria-disabled="true">
+                            <a class="nav-link" href="/employee" tabindex="-1" aria-disabled="true">
                                 Nhân viên
                             </a>
                         </li>
