@@ -27,9 +27,12 @@ export default function ManageBaoHanh() {
         const history = useHistory();
 
         function handleRemoveBaoHanh() {
-            axios.post(`http://localhost:5000/bao_hanh/remove/${baohanh.seri_sp}`).then((res) => {
-                setData(res.data);
-            });
+            if (window.confirm("Bạn chắc chắn muốn xóa đơn bảo hành này?"))
+                axios
+                    .post(`http://localhost:5000/bao_hanh/remove/${baohanh.seri_sp}`)
+                    .then((res) => {
+                        setData(res.data);
+                    });
         }
 
         return (
@@ -45,52 +48,10 @@ export default function ManageBaoHanh() {
                         class="btn btn-sm btn-outline-danger"
                         data-bs-toggle="modal"
                         data-bs-target="#exampleModal"
+                        onClick={() => handleRemoveBaoHanh()}
                     >
                         Xóa
                     </button>
-                    <div
-                        class="modal fade"
-                        id="exampleModal"
-                        tabindex="-1"
-                        aria-labelledby="exampleModalLabel"
-                        aria-hidden="true"
-                    >
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">
-                                        Cảnh báo
-                                    </h5>
-                                    <button
-                                        type="button"
-                                        class="btn-close"
-                                        data-bs-dismiss="modal"
-                                        aria-label="Close"
-                                    ></button>
-                                </div>
-                                <div class="modal-body">
-                                    Bạn có chắc chắn muốn xóa đơn bảo hành này ?
-                                </div>
-                                <div class="modal-footer">
-                                    <button
-                                        type="button"
-                                        class="btn btn-danger"
-                                        data-bs-dismiss="modal"
-                                    >
-                                        Không
-                                    </button>
-                                    <button
-                                        type="button"
-                                        class="btn btn-primary"
-                                        onClick={() => handleRemoveBaoHanh()}
-                                        data-bs-dismiss="modal"
-                                    >
-                                        Chắc chắn
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </td>
                 <td>
                     <button
