@@ -6,6 +6,8 @@ const axios = require('axios')
 
 function ManageOrder() {
     const [data, setData] = useState([])
+    const searchKey = (new URLSearchParams(window.location.search)).get('search')
+    
     useEffect(() => {
         axios.get(`http://localhost:5000/order`)
             .then(res => setData(res.data))
