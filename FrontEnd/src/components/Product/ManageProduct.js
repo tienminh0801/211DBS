@@ -27,7 +27,7 @@ export default function ManageProduct() {
             const isSure = window.confirm('Bạn có chắc chắn muốn xóa sản phẩm này ??')
 
             if (isSure) {
-                axios.post(`http://localhost:8080/san_pham/remove/${param}`)
+                axios.post(`http://localhost:5000/san_pham/remove/${param}`)
                 .then(res => {
                     setData(res.data)
                 })
