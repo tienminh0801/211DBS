@@ -1,65 +1,64 @@
-import { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
-import NavBar from '../HomePage/NavBar';
+import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import NavBar from "../HomePage/NavBar";
 
-const axios = require('axios')
-
-
+const axios = require("axios");
 
 export default function ManageProduct() {
+    const [data, setData] = useState([]);
 
-    const [data, setData] = useState([])
-
-    const searchKey = (new URLSearchParams(window.location.search)).get('search')
+    const searchKey = new URLSearchParams(window.location.search).get("search");
 
     useEffect(() => {
         if (searchKey) {
-            axios.get(`http://localhost:8080/san_pham/search/${searchKey}`)
-                .then(res => setData(res.data))
-                .catch(err => console.log('Đây là lỗi :', err))
+            axios
+                .get(`http://localhost:5000/san_pham/search/${searchKey}`)
+                .then((res) => setData(res.data))
+                .catch((err) => console.log("Đây là lỗi :", err));
+        } else {
+            axios
+                .get(`http://localhost:5000/san_pham`)
+                .then((res) => setData(res.data))
+                .catch((err) => console.log("Đây là lỗi :", err));
         }
-        else {
-            axios.get(`http://localhost:8080/san_pham`)
-                .then(res => setData(res.data))
-                .catch(err => console.log('Đây là lỗi :', err))
-        }
-    }, [])
+    }, []);
 
     function ProductItem({ product }) {
-
-        const history = useHistory()
-
+        const history = useHistory();
 
         function handleRemoveProduct(param) {
-            const isSure = window.confirm('Bạn có chắc chắn muốn xóa sản phẩm này ??')
+            const isSure = window.confirm("Bạn có chắc chắn muốn xóa sản phẩm này ??");
 
             if (isSure) {
-                axios.post(`http://localhost:8080/san_pham/remove/${param}`)
-                .then(res => {
-                    setData(res.data)
-                })
-            }
-            else return
+                axios.post(`http://localhost:5000/san_pham/remove/${param}`).then((res) => {
+                    setData(res.data);
+                });
+            } else return;
         }
 
         return (
             <tr>
                 <td>{product.ten_san_pham}</td>
-                <td>{product.ten_san_pham_tang_kem ? product.ten_san_pham_tang_kem : 'Không'}</td>
+                <td>{product.ten_san_pham_tang_kem ? product.ten_san_pham_tang_kem : "Không"}</td>
                 <td>{product.loai_san_pham}</td>
                 <td>{product.chat_lieu}</td>
                 <td>{product.gia_niem_yet}</td>
-                <td>{product.khuyen_mai ? product.khuyen_mai : 'Không'}</td>
+                <td>{product.khuyen_mai ? product.khuyen_mai : "Không"}</td>
                 <td>
                     {/* <button type="button" class="btn btn-sm btn-outline-secondary"
                         onClick={() => {
                             handleRemoveProduct(product.ten_san_pham)
                         }}
                     >Xử lý</button> */}
-                    <button type="button" class="btn btn-sm btn-outline-danger"
-                        data-bs-toggle="modal" data-bs-target="#exampleModal" 
+                    <button
+                        type="button"
+                        class="btn btn-sm btn-outline-danger"
+                        data-bs-toggle="modal"
+                        data-bs-target="#exampleModal"
                         onClick={() => handleRemoveProduct(product.ten_san_pham)}
-                    >Xử lý</button>
+                    >
+                        Xử lý
+                    </button>
                     {/* <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
                     data-name={product.ten_san_pham}>
                         <div class="modal-dialog">
@@ -83,29 +82,42 @@ export default function ManageProduct() {
                     </div> */}
                 </td>
                 <td>
-                    <button type="button" class="btn btn-sm btn-outline-secondary"
+                    <button
+                        type="button"
+                        class="btn btn-sm btn-outline-secondary"
                         onClick={() => {
-                            history.push('/product/edit', product.ten_san_pham)
+                            history.push("/product/edit", product.ten_san_pham);
                         }}
-                    >Xử lý</button>
+                    >
+                        Xử lý
+                    </button>
                 </td>
             </tr>
-        )
+        );
     }
 
     return (
-
         <div>
-            <div class='mb-5'>
+            <div class="mb-5">
                 <NavBar />
             </div>
-            <div class='container my-5' >
-
-                <div class='row my-5'>
-                    <h2 class='col'>Quản lí sản phẩm</h2>
-                    <button type="button" class="btn btn-sm btn-outline-primary mx-5 col-2 float-start"
-                        onClick={() => window.location.href = '/product/add'} style={{ width: '12%' }}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+            <div class="container my-5">
+                <div class="row my-5">
+                    <h2 class="col">Quản lí sản phẩm</h2>
+                    <button
+                        type="button"
+                        class="btn btn-sm btn-outline-primary mx-5 col-2 float-start"
+                        onClick={() => (window.location.href = "/product/add")}
+                        style={{ width: "12%" }}
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            fill="currentColor"
+                            class="bi bi-plus-square-fill"
+                            viewBox="0 0 16 16"
+                        >
                             <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z" />
                         </svg>
                         <a> Thêm sản phẩm </a>
@@ -113,8 +125,8 @@ export default function ManageProduct() {
                 </div>
                 <div class="table-responsive">
                     <table class="table table-striped table-sm table-hover">
-                        <thead class='table-bordered'>
-                            <tr class='table-danger'>
+                        <thead class="table-bordered">
+                            <tr class="table-danger">
                                 <th scope="col">Tên sản phẩm</th>
                                 <th scope="col">Sản phẩm tặng kèm</th>
                                 <th scope="col">Loại sản phẩm</th>
@@ -128,12 +140,12 @@ export default function ManageProduct() {
                         </thead>
                         <tbody>
                             {data.map((product) => {
-                                return <ProductItem product={product} />
+                                return <ProductItem product={product} />;
                             })}
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-    )
+    );
 }

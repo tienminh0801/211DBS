@@ -36,3 +36,9 @@ exports.searchBaoHanh = (req, res) => {
     const result = (data) => res.send(data);
     BaoHanh.searchBaoHanh(data, result);
 };
+
+exports.searchMSH = (req, res) => {
+    const data = req.params.id;
+    const result = (data) => res.send(data);
+    BaoHanh.searchMSH(data, result);
+};

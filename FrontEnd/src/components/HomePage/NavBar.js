@@ -1,6 +1,6 @@
 export default function NavBar() {
     function handleSearch(e) {
-        // axios.get(`http://localhost:8080/san_pham/search/${document.getElementById('search').value}`)
+        // axios.get(`http://localhost:5000/san_pham/search/${document.getElementById('search').value}`)
         //     .then(res => {
         //     })
         e.preventDefault();

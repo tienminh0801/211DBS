@@ -12,24 +12,34 @@ export default function ManageBaoHanh() {
     useEffect(() => {
         if (searchKey) {
             axios
-                .get(`http://localhost:8080/bao_hanh/search/${searchKey}`)
+                .get(`http://localhost:5000/bao_hanh/search/${searchKey}`)
                 .then((res) => setData(res.data))
                 .catch((err) => console.log("Đây là lỗi :", err));
         } else {
             axios
-                .get(`http://localhost:8080/bao_hanh`)
+                .get(`http://localhost:5000/bao_hanh`)
                 .then((res) => setData(res.data))
                 .catch((err) => console.log("Đây là lỗi :", err));
         }
     }, []);
 
+    function handleSearch(e) {
+        e.preventDefault();
+        window.location.href = `/baohanh/?search=${
+            document.getElementById("search_baohanh").value
+        }`;
+    }
+
     function BaoHanhItem({ baohanh }) {
         const history = useHistory();
 
         function handleRemoveBaoHanh() {
-            axios.post(`http://localhost:8080/bao_hanh/remove/${baohanh.seri_sp}`).then((res) => {
-                setData(res.data);
-            });
+            if (window.confirm("Bạn thật sự muốn xóa đơn bảo hành này?"))
+                axios
+                    .post(`http://localhost:5000/bao_hanh/remove/${baohanh.seri_sp}`)
+                    .then((res) => {
+                        setData(res.data);
+                    });
         }
 
         return (
@@ -45,52 +55,10 @@ export default function ManageBaoHanh() {
                         class="btn btn-sm btn-outline-danger"
                         data-bs-toggle="modal"
                         data-bs-target="#exampleModal"
+                        onClick={() => handleRemoveBaoHanh()}
                     >
                         Xóa
                     </button>
-                    <div
-                        class="modal fade"
-                        id="exampleModal"
-                        tabindex="-1"
-                        aria-labelledby="exampleModalLabel"
-                        aria-hidden="true"
-                    >
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">
-                                        Cảnh báo
-                                    </h5>
-                                    <button
-                                        type="button"
-                                        class="btn-close"
-                                        data-bs-dismiss="modal"
-                                        aria-label="Close"
-                                    ></button>
-                                </div>
-                                <div class="modal-body">
-                                    Bạn có chắc chắn muốn xóa đơn bảo hành này ?
-                                </div>
-                                <div class="modal-footer">
-                                    <button
-                                        type="button"
-                                        class="btn btn-danger"
-                                        data-bs-dismiss="modal"
-                                    >
-                                        Không
-                                    </button>
-                                    <button
-                                        type="button"
-                                        class="btn btn-primary"
-                                        onClick={() => handleRemoveBaoHanh()}
-                                        data-bs-dismiss="modal"
-                                    >
-                                        Chắc chắn
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </td>
                 <td>
                     <button
@@ -112,6 +80,7 @@ export default function ManageBaoHanh() {
             <div class="mb-5">
                 <NavBar />
             </div>
+
             <div class="container my-5">
                 <div class="row my-5">
                     <h2 class="col">Quản lí bảo hành</h2>
@@ -134,6 +103,40 @@ export default function ManageBaoHanh() {
                         <a> Thêm đơn bảo hành </a>
                     </button>
                 </div>
+                <form class="d-flex" onSubmit={(e) => handleSearch(e)}>
+                    <input
+                        class="form-control me-2"
+                        type="search"
+                        placeholder="Search"
+                        aria-label="Search"
+                        id="search_baohanh"
+                    />
+                    <button class="btn btn-outline-success" type="submit">
+                        Search
+                    </button>
+
+                    <input
+                        class="form-control me-2"
+                        type="search"
+                        placeholder="Search"
+                        aria-label="Search"
+                        id="search_baohanh"
+                    />
+                    <button class="btn btn-outline-success" type="submit">
+                        Search
+                    </button>
+
+                    <input
+                        class="form-control me-2"
+                        type="search"
+                        placeholder="Search"
+                        aria-label="Search"
+                        id="search_baohanh"
+                    />
+                    <button class="btn btn-outline-success" type="submit">
+                        Search
+                    </button>
+                </form>
                 <div class="table-responsive">
                     <table class="table table-striped table-sm table-hover">
                         <thead class="table-bordered">

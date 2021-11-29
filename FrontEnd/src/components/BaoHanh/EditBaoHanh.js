@@ -15,16 +15,16 @@ export default function EditBaoHanh() {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:8080/bao_hanh/${location}`)
+            .get(`http://localhost:5000/bao_hanh/${location}`)
             .then((res) => setInfoBaoHanh(res.data[0]))
             .catch((err) => console.log("Đây là lỗi :", err));
         axios
-            .get(`http://localhost:8080/san_pham`)
+            .get(`http://localhost:5000/san_pham`)
             .then((res) => setDataProduct(res.data))
             .catch((err) => console.log("Đây là lỗi :", err));
 
         axios
-            .get(`http://localhost:8080/eachproduct`)
+            .get(`http://localhost:5000/eachproduct`)
             .then((res) => setDataSeri(res.data))
             .catch((err) => console.log("Đây là lỗi :", err));
     }, []);
@@ -36,7 +36,7 @@ export default function EditBaoHanh() {
 
         e.preventDefault();
 
-        axios.post(`http://localhost:8080/bao_hanh/${location}`, {
+        axios.post(`http://localhost:5000/bao_hanh/${location}`, {
             ten_dong_sp: name,
             seri_sp: seri,
             thoi_gian_bao_hanh: time,

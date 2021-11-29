@@ -98,4 +98,17 @@ BaoHanh.searchBaoHanh = function (data, send) {
     });
 };
 
+BaoHanh.searchMSH = function (data, send) {
+    let query = "SELECT * FROM bao_hanh WHERE baohanh.ma_so_hang REGEXP ? ";
+
+    mySql.query(query, data, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            return;
+        }
+        console.log(res, " Here!!!!!");
+        send(res);
+    });
+};
+
 module.exports = BaoHanh;
