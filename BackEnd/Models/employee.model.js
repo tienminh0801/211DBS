@@ -96,8 +96,8 @@ NhanVien.getByCccd = function (data, send) {
 } 
 
 NhanVien.searchEmployee = function (data, send) {
-    let query = "SELECT * FROM nhan_vien WHERE nhan_vien.ten REGEXP ?";
-    mySql.query(query, data, (err, res) => {
+    let query = "SELECT * FROM nhan_vien WHERE nhan_vien.cccd REGEXP ? OR nhan_vien.ten REGEXP ? OR nhan_vien.sdt REGEXP ?";
+    mySql.query(query, [data, data, data], (err, res) => {
         if (err) {
             console.log("error: ", err);
             return;
