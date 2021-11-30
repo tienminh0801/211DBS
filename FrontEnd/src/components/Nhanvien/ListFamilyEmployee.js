@@ -70,7 +70,7 @@ export default function ListFamilyEmployee() {
 
         <div >
             <div class='mb-1'>
-                <NavBar pathName='employee' />
+                <NavBar pathName='employee_family' />
             </div>
             <div class='container my-5' >
                 <div class='row my-2'>
