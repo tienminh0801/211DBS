@@ -11,8 +11,8 @@ and then run
 ```
 npm install
 ```
-to install all needed packages for backend.
-Also do the same in FrontEnd  directory.
+to install all needed packages for backend.<br />
+Also do the same in FrontEnd  directory.<br />
 Type the command
 ```
 npm start
