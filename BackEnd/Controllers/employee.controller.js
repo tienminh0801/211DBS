@@ -5,12 +5,6 @@ exports.getAll = (req, res) => {
     NhanVien.getAll(result)
 }
 
-exports.getMgr = (req, res) => {
-    const data = req.params.id
-    const result = data => res.send(data)
-    console.log(data)
-    NhanVien.getMgr(data, result)
-}
 
 exports.getByCccd = (req, res) => {
     const data = req.params.id

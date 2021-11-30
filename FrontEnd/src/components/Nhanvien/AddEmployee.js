@@ -41,7 +41,7 @@ export default function AddEmployee() {
         let sex = document.getElementById('sexEmployee').value
         let nameBranch = document.getElementById('nameBranchEmployee').value
         let dateStartWork = document.getElementById('dateStartWorkEmployee').value
-        let noSupervisor = document.getElementById('noSupervisorEmployee').value
+        let noSupervisor = document.getElementById('noSupervisorEmployee').value.slice(0, 9)
         let type = document.getElementById('typeEmployee').value
 
 

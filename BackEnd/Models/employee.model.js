@@ -47,20 +47,7 @@ NhanVien.updateEmployee = function (data, body) {
 } 
 
 
-NhanVien.getMgr = function (data, send) {
-    let query = "SELECT * FROM nhan_vien WHERE nhan_vien.cccd_nguoi_giam_sat IS NULL";
 
-    mySql.query(query, data, (err, res) => {
-        if (err) {
-            console.log("error: ", err);
-            result(err);
-            return;
-        }
-
-        // console.log("Hãng sản xuất: ", res);
-        send(res)
-    });
-}
 
 NhanVien.insertEmployee = function (data) {
     let query = "INSERT INTO nhan_vien SET ?";

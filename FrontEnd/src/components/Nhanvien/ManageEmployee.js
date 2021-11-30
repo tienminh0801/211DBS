@@ -26,11 +26,14 @@ export default function ManageEmployee() {
 
         const history = useHistory()
 
-        function handleRemoveEmployee() {
-            axios.post(`http://localhost:5000/nhan_vien/remove/${employee.cccd}`)
-                .then(res => {
-                    setData(res.data)
-                })
+        function handleRemoveEmployee(param) {
+            const isSure = window.confirm("Bạn có chắc chắn muốn xóa nhân viên này ??");
+
+            if (isSure) {
+                axios.post(`http://localhost:5000/nhan_vien/remove/${param}`).then((res) => {
+                    setData(res.data);
+                });
+            } else return;
         }
 
         function fixDate(date) {
@@ -53,27 +56,8 @@ export default function ManageEmployee() {
                 <td>
                     <button type="button" class="btn btn-sm btn-outline-danger"
                         data-bs-toggle="modal" data-bs-target="#exampleModal"
+                        onClick={() => handleRemoveEmployee(employee.cccd)}
                     >Xóa</button>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Cảnh báo</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    Bạn có chắc chắn muốn xóa nhân viên này ?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Không</button>
-                                    <button type="button" class="btn btn-primary"
-                                        onClick={() => { handleRemoveEmployee() }}
-                                        data-bs-dismiss="modal"
-                                    >Chắc chắn</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </td>
                 <td>
                     <button type="button" class="btn btn-sm btn-outline-secondary"
