@@ -10,14 +10,21 @@ export default function ListFamilyEmployee() {
 
     const [dataF, setDataF] = useState([])
     const [dataE, setDataE] = useState([])
-
+    const searchKey = (new URLSearchParams(window.location.search)).get('search')
     useEffect(() => {
         axios.get(`http://localhost:5000/nguoi_than/`)
             .then(res => setDataF(res.data))
             .catch(err => console.log('Đây là lỗi :', err))
-        axios.get(`http://localhost:5000/nhan_vien/`)
-            .then(res => setDataE(res.data))
-            .catch(err => console.log('Đây là lỗi :', err))
+        if (searchKey) {
+            axios.get(`http://localhost:5000/nhan_vien/search/${searchKey}`)
+                .then(res => setDataE(res.data))
+                .catch(err => console.log('Đây là lỗi :', err))
+        }
+        else {
+            axios.get(`http://localhost:5000/nhan_vien`)
+                .then(res => setDataE(res.data))
+                .catch(err => console.log('Đây là lỗi :', err))
+        }
     }, [])
 
     function EmployeeFamilyItem({ employee }) {
